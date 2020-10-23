@@ -17,19 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
-from . import views
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('', views.HomeView.as_view(), name='home'),
     #path('', TemplateView.as_view(template_name="meetup_finder/home.html")),
     #path('', include('allauth.urls')),
-    path('accounts/profile/', views.WelcomeView),
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('meetup_finder_app.urls'))
 ]

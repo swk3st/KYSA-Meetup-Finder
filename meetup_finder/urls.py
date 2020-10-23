@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', TemplateView.as_view(template_name="meetup_finder/home.html")),
     #path('', include('allauth.urls')),
-    path('', include('meetup_finder_app.urls'))
+    path('accounts/', include('allauth.urls')),
+    path('', include('meetup_finder_app.urls')),
 ]

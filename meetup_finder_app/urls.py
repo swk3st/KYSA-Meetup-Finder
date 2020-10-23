@@ -9,6 +9,8 @@ from django.conf.urls import include
 app_name = 'meetup_finder_app'
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
-    path('', views.HomeView.as_view(), name='home'),
+    path('newevent/', TemplateView.as_view(template_name="meetup_finder_app/newEvent.html")),
+    path('createEvent/', views.createEvent, name = 'createEvent'),
     path('accounts/profile/', views.WelcomeView),
+    path('', views.HomeView.as_view(), name='home'),
 ]

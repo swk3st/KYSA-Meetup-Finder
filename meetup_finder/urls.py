@@ -27,4 +27,9 @@ urlpatterns = [
     #path('', TemplateView.as_view(template_name="meetup_finder/home.html")),
     #path('', include('allauth.urls')),
     path('accounts/profile/', views.WelcomeView),
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('meetup_finder_app.urls'))
 ]

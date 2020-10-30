@@ -12,5 +12,7 @@ urlpatterns = [
     path('newevent/', TemplateView.as_view(template_name="meetup_finder_app/newEvent.html")),
     path('createEvent/', views.createEvent, name = 'createEvent'),
     path('accounts/profile/', views.WelcomeView),
+    path('upcoming/', views.UpcomingView.as_view()),
+    path('<int:pk>', views.DetailView.as_view(), name = "detail"),
     path('', views.HomeView.as_view(), name='home'),
 ]

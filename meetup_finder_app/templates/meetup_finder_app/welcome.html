@@ -1,6 +1,6 @@
 {% load account %}
 
-{% user_display user %}
+<!-- {% user_display user %} -->
 {% load static %}
 <head>
     <meta charset="utf-8">
@@ -13,19 +13,21 @@
   </head>
   <body>
     {% block body %}  
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="">Home</a>
-          <a class="navbar-brand" href="newevent">New Event</a>
-          <a class="navbar-brand" href="accounts/login">Login</a>
-        <form class="example" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
-        </div>
+    <section id="navbar">
+      <nav class="navbar navbar-light bg-light justify-content-between">
+          <a class="navbar-brand">
+                <a href="" class="navbar-brand smoothScroll">Meetup Finder</a>
+          </a>
+              <ul class="nav navbar-header ml-auto" style="font-size: 20px;">
+                <!-- <li><a href="" class="smoothScroll px-3"><span>Home</span></a></li> -->
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2 px-3" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> 
+                <li><a href="{% url 'meetup_finder_app:account_login'%}" class="smoothScroll px-3"><span>{% user_display user %}</span></a></li>
+              </ul>
       </nav>
-      <!-- <div class="container">
-      </div> -->
+
     {% endblock body %}  
   </body>
 <br>

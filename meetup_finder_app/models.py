@@ -22,3 +22,4 @@ class Event(models.Model):
     coming_up.admin_order_field = 'event_date'
     coming_up.boolean = True
     coming_up.short_description = 'Coming up soon?'
+

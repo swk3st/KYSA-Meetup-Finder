@@ -1,3 +1,30 @@
+{% load account %}
+
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Meetup Finder{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    {% block stylesheet %}{% endblock %}  
+  </head>
+<section id="navbar">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">
+              <a href="" class="navbar-brand smoothScroll">Meetup Finder</a>
+        </a>
+            <ul class="nav navbar-header ml-auto" style="font-size: 20px;">
+              <li><a href="" class="smoothScroll px-3"><span>Home</span></a></li>
+              <form class="form-inline">
+                <input class="form-control mr-sm-2 px-3" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form> 
+              <li><a href="{% url 'meetup_finder_app:account_login'%}" class="smoothScroll px-3"><span>{% user_display user %}'s Profile</span></a></li>
+              <li><a href="{% url 'meetup_finder_app:upcoming' %}" class="smoothScroll px-3"><span>Explore</span></a></li>
+            </ul>
+    </nav>
+</section>
 <h1>{{ event.event_name }}</h1>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

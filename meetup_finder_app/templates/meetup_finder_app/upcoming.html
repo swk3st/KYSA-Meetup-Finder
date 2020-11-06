@@ -1,6 +1,4 @@
-{%  extends 'meetup_finder_app/main.html' %}
-
-{% block content %}
+{% include 'meetup_finder_app/navbar.html' %}
 
 {% if event_list %}
 
@@ -18,5 +16,3 @@
 {% else %}
     <p>No upcoming events</p>
 {% endif %}
-
-{% endblock %}

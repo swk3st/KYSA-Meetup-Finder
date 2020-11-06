@@ -4,13 +4,16 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+import allauth
+from allauth.socialaccount.models import SocialAccount
 
 
 class Event(models.Model):
     event_date = models.DateTimeField('event date')
     # need to add event name field sometime soon
     event_description = models.CharField(max_length=200)
-    event_organizer = models.CharField(max_length=200)
+    event_organizer = models.ForeignKey(SocialAccount,
+                             on_delete=models.CASCADE)
     event_location = models.CharField(max_length=200)
     event_name = models.CharField(max_length=200)
     def __str__(self):

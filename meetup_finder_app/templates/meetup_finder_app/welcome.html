@@ -1,6 +1,6 @@
-{% load account %}
+{% load socialaccount %}
 
-{% user_display user %}
+<p>Hello {{ user.p }}</p>
 <br>
 <a href="{% url 'meetup_finder_app:upcoming' %}">Upcoming Events</a>
 <br>

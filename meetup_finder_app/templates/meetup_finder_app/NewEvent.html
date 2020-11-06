@@ -2,12 +2,13 @@
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+   {% load socialaccount %}
+
     <form action="{% url 'meetup_finder_app:createEvent'  %}" method="post">
     {% csrf_token %}
     <label>event name:</label><br>
     <input type="text" id="event_name_text" name="event_name_text"><br>
-    <label>organizer name:</label><br>
-    <input type="text" id="organizer" name = "organizer"><br>
+    <input type="hidden" id="organizer" name = "organizer" value= {{user}}>
     <label>Details:</label><br>
     <input type="text" id='detail_text' name="detail_text"><br>
     <label>Date:</label>

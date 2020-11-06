@@ -12,6 +12,7 @@ from django.urls import reverse
 from django.views import generic
 from django.views.generic.base import TemplateView
 from .models import Event
+from allauth.socialaccount.models import SocialAccount
 
 class HomeView(TemplateView):
     template_name = 'meetup_finder_app/home.html'
@@ -32,13 +33,15 @@ class IndexView(generic.ListView):
 
 
 class NewEventView(TemplateView):
-    template_name = 'polls/NewEvent.html'
+    template_name = 'meetup_finder_app/NewEvent.html'
 
 def createEvent(request):
     newEvent = Event()
     newEvent.event_name = request.POST['event_name_text']
     newEvent.event_date = request.POST['event_time']
-    newEvent.event_organizer = request.POST['organizer']
+    u = request.POST['organizer']
+    sa = SocialAccount.objects.get(user = u)
+    newEvent.event_organizer = sa
     newEvent.event_description = request.POST['detail_text']
     newEvent.event_location = request.POST['address']
 

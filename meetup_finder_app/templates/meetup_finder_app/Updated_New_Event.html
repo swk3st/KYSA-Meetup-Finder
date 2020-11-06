@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Map Test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <form action="{% url 'meetup_finder_app:createEvent'  %}" method="post">
+            {% csrf_token %}
+            <label>event name:</label><br>
+            <input type="text" id="event_name_text" name="event_name_text"><br>
+
+            <label>organizer name:</label><br>
+            <input type="text" id="organizer" name = "organizer"><br>
+
+            <label>Details:</label><br>
+            <input type="text" id='detail_text' name="detail_text"><br>
+
+            <label>Date:</label><br>
+            <input type="datetime-local" id="event_time"
+            name="event_time"><br>
+
+            <label>Location</label><br>
+            <input type="text" id="location" name="location"><br>
+
+            <label>Address</label><br>
+            <input type="text" id="address" name="address" onfocusout="validateAddress()"><br>
+
+            <label>City</label><br>
+            <input type="text" id="city" name="city" onfocusout="validateAddress()"><br>
+
+            <label>State</label><br>
+            <input type="text" id="state" name="state" onfocusout="validateAddress()"><br>
+
+            <!-- GeoLocation Data -->
+            <input type="hidden" id="lattitude" name="lat">
+            <input type="hidden" id="longitude" name="lng">
+
+            <input type="submit" class="btn btn-primary" value="create event">
+        </form>
+
+        <script src="" async defer></script>
+    </body>
+
+<script>
+
+    const key = "wbA69mWK8KO0C73sc2yArd9EDE2iv4LG";
+
+    function addrToCoordinates(addr,city,state){
+        let res = null;
+        addr = addr.split(" ").join("+");
+        city = city.split(" ").join("+");
+        state = state.split(" ").join("+");
+        console.log(`http://open.mapquestapi.com/geocoding/v1/address?key=${key}&location=${addr},${city},${state}`)
+        return fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=${key}&location=${addr},${city},${state}`)
+    }
+
+    function validateAddress(){
+
+        console.log("Address Validation Called")
+
+        let addr = document.getElementById("address").value;
+        let city = document.getElementById("city").value;
+        let state = document.getElementById("state").value;
+        if (addr!="" && city!="" && state!=""){
+            let lat = document.getElementById("lattitude");
+            let long = document.getElementById("longitude");
+            addrToCoordinates(addr,city,state).then(res=>{
+                res.json().then(data=>{
+                    let latLng = data.results[0].locations[0].latLng
+                    console.log("LatLon:",latLng)
+                    lat.value = latLng.lat;
+                    long.value = latLng.lng;
+                })
+            })
+        }
+    }
+</script>
+</html>

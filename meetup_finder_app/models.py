@@ -13,6 +13,8 @@ class Event(models.Model):
     event_organizer = models.CharField(max_length=200)
     event_location = models.CharField(max_length=200)
     event_name = models.CharField(max_length=200)
+    lat = models.FloatField(default=38.036411)
+    lng = models.FloatField(default=-78.502455)
     def __str__(self):
         return self.event_description
     def coming_up(self):
@@ -22,3 +24,4 @@ class Event(models.Model):
     coming_up.admin_order_field = 'event_date'
     coming_up.boolean = True
     coming_up.short_description = 'Coming up soon?'
+

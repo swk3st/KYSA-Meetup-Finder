@@ -1,7 +1,11 @@
+{%  extends 'meetup_finder_app/main.html' %}
+
+{% block content %}
 <h1>{{ event.event_name }}</h1>
 
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-    <p>{{event.event_organizer}}</p>
-    <p>{{event.event_description}}</p>
-    <p>{{event.event_location}}</p>
+<p>{{event.event_organizer}}</p>
+<p>{{event.event_description}}</p>
+<p>{{event.event_location}}</p>
+{% endblock %}

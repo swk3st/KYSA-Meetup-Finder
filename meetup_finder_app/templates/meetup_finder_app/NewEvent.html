@@ -1,29 +1,8 @@
+{%  extends 'meetup_finder_app/main.html' %}
+
+{% block content %}
+
 {% load static %}
-<head>
-   <meta charset="utf-8">
-   <title>{% block title %}Meetup Finder{% endblock %}</title>
-   <!-- <link href="https://fonts.googleapis.com/css?family=Peralta" rel="stylesheet"> -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
-   <link rel="stylesheet" href="{% static 'css/app.css' %}">
-   {% block stylesheet %}{% endblock %}  
- </head>
- <body>
-   {% block body %}  
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-       <div class="container">
-         <a class="navbar-brand" href="">Home</a>
-         <a class="navbar-brand" href="newevent">New Event</a>
-         <a class="navbar-brand" href="accounts/login">Login</a>
-       <form class="example" action="action_page.php">
-           <input type="text" placeholder="Search.." name="search">
-           <button type="submit"><i class="fa fa-search"></i></button>
-         </form>
-       </div>
-     </nav>
-     <!-- <div class="container">
-     </div> -->
-   {% endblock body %}  
 
 <h1>Create Event Below</h1>
    
@@ -31,18 +10,21 @@
 
     <form action="{% url 'meetup_finder_app:createEvent'  %}" method="post">
     {% csrf_token %}
-    <label>event name:</label><br>
+    <label>Event Name:</label><br>
     <input type="text" id="event_name_text" name="event_name_text"><br>
-    <label>organizer name:</label><br>
+    <!-- Will need to get rid of this eventually since it should know the user's information-->
+    <label> Organizer Name:</label><br>
     <input type="text" id="organizer" name = "organizer"><br>
-    <label>Details:</label><br>
+    <label>Description:</label><br>
     <input type="text" id='detail_text' name="detail_text"><br>
     <label>Date:</label>
     <input type="datetime-local" id="event_time"
        name="event_time"><br>
-    <label>location (address):</label>
+    <label>Location (address):</label>
     <input type="text" id="address" name="address"><br>
-    <input type="submit" class="btn btn-primary" value="create event">
+    <input type="submit" class="btn btn-primary" value="Publish Event">
 
     </form>
    </body>
+
+   {% endblock %}

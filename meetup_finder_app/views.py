@@ -17,8 +17,10 @@ class HomeView(TemplateView):
     template_name = 'meetup_finder_app/home.html'
 
 def WelcomeView(request):
-    template_name = 'meetup_finder_app/welcome.html'
+    template_name = 'meetup_finder_app/userProfile.html'
     return render(request, template_name)
+
+    
 class IndexView(generic.ListView):
     template_name = 'meetup_finder_app/index.html'
     #context_object_name = 'latest_question_list'

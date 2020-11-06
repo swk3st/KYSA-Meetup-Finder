@@ -20,7 +20,7 @@ def WelcomeView(request):
     template_name = 'meetup_finder_app/userProfile.html'
     return render(request, template_name)
 
-    
+
 class IndexView(generic.ListView):
     template_name = 'meetup_finder_app/index.html'
     #context_object_name = 'latest_question_list'
@@ -68,4 +68,6 @@ class UpcomingView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Event
     template_name = 'meetup_finder_app/detail.html'
+
+    
     

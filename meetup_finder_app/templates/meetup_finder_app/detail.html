@@ -2,4 +2,7 @@
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+    <div width="500" height="300">
+    {% include 'meetup_finder_app/single_event_view.html' %}
+    </div>
     <p>{{event.event_description}}</p>

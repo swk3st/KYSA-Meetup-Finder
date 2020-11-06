@@ -17,7 +17,7 @@ class HomeView(TemplateView):
     template_name = 'meetup_finder_app/home.html'
 
 def WelcomeView(request):
-    template_name = 'meetup_finder_app/welcome.html'
+    template_name = 'meetup_finder_app/userProfile.html'
     return render(request, template_name)
 
 def SingleEventView(request):
@@ -74,4 +74,6 @@ class UpcomingView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Event
     template_name = 'meetup_finder_app/detail.html'
+
+    
     

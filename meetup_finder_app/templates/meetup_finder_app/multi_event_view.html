@@ -7,7 +7,20 @@
                 let locations = []
 
                 {% for event in event_list %}
-                    locations.push({ lat: {{event.lat}}, lng: {{event.lng}}})
+                    var content = `
+                    <div id="content">
+                        <div id="siteNotice"></div>
+                        <h1 id="firstHeading" class="firstHeading">{{ event.event_name }}</h1> 
+                        <div id="bodyContent"> 
+                            <p>{{ event.event_description }}</p>
+                            <br>
+                            <form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
+                                <input type="submit" value="Details" />
+                            </form>
+                        </div>
+                    </div>`
+
+                    locations.push({ lat: {{event.lat}}, lng: {{event.lng}}, cont:content})
                 {% endfor %}
 
                 console.log(locations)
@@ -28,9 +41,15 @@
                 });
         
                 locations.map(o=>{
+                    let infowindow = new google.maps.InfoWindow({
+                        content: o.cont,
+                    });
                     let marker = new google.maps.Marker({
-                        position: o,
+                        position: {lat:o.lat,lng:o.lng},
                         map: map,
+                    });
+                    marker.addListener("click", () => {
+                        infowindow.open(map, marker);
                     });
                 })
             }

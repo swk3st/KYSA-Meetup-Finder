@@ -12,10 +12,16 @@
                         <div id="siteNotice"></div>
                         <h1 id="firstHeading" class="firstHeading">{{ event.event_name }}</h1> 
                         <div id="bodyContent"> 
+                            <hr>
+                            <h5>By:</h5>
+                            <p>{{ event.event_organizer }}</p>
+                            <h5>Description:</h5>
                             <p>{{ event.event_description }}</p>
+                            <h5>When:</h5>
+                            <p>{{ event.event_date }}</p>
                             <br>
                             <form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
-                                <input type="submit" value="Details" />
+                                <input class="btn btn-primary" type="submit" value="Details" />
                             </form>
                         </div>
                     </div>`
@@ -52,5 +58,8 @@
                         infowindow.open(map, marker);
                     });
                 })
+
+                map.setOptions({scrollwheel: false});
+                
             }
         </script>

@@ -6,10 +6,7 @@
 
 {% block content %}
 <body>
-    <ul>
-        <h2><a href="" class="smoothScroll px-3"><span>Welcome, {% user_display user %} to your account </span></a></h2>
-    </ul>
-</body> 
+        <h1><a href="" class="smoothScroll px-3"><span>Welcome, {% user_display user %} to your account </span></a></h1>
 
 <div class="row" >
 	<div class="col-md-3">
@@ -30,11 +27,10 @@
 	</div>
 </div>
 <hr>
-<div>
+<div style="width:100vw;">
 <h3>Your upcoming events:</h3>
-<ul>
+<div style="width:100vw;display:flex;flex-wrap:wrap;justify-content:center;">
 {%for event in user.event_set.all %}
-	{%if event.coming_up %}
 		<div id="content" style="width:300px;border-style: solid;padding:10px;border-radius:15px">
 			<div id="siteNotice"></div>
 			<h1 id="firstHeading" class="firstHeading">{{ event.event_name }}</h1> 
@@ -52,10 +48,11 @@
 				</form>
 			</div>
 		</div>`
-	{%endif%}
 {%endfor%}
-</ul>
+</div>
 </div>
 
 
 {% endblock %}
+
+</body> 

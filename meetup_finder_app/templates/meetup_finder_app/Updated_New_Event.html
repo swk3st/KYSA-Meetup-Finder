@@ -18,7 +18,7 @@
             <div class="col-md-5">
               <div class="card card-body">
 
-        <form action="{% url 'meetup_finder_app:createEvent'  %}" method="post">
+        <form action="{% url 'meetup_finder_app:createEvent' %}" method="post">
             {% csrf_token %}
             <label>event name:</label><br>
             <input type="text" id="event_name_text" name="event_name_text" required><br>

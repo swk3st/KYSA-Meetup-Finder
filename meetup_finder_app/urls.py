@@ -17,5 +17,7 @@ urlpatterns = [
     path('upcoming/', views.UpcomingView.as_view(), name="upcoming"),
     path('<int:pk>', views.DetailView.as_view(), name = "detail"),
     path('single_map_vew/', views.SingleEventView, name="eventView"),
+    path('showInterest/', views.showInterest, name="show_interest"),
+    path('revokeInterest/', views.revokeInterest, name="revoke_interest"),
     path('', views.HomeView.as_view(), name='home'),
 ]

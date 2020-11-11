@@ -17,7 +17,7 @@ class HomeView(TemplateView):
     template_name = 'meetup_finder_app/home.html'
 
 def WelcomeView(request):
-    template_name = 'meetup_finder_app/userProfile.html'
+    template_name = 'meetup_finder_app/dashboard.html'
     return render(request, template_name)
 
 def SingleEventView(request):
@@ -39,7 +39,13 @@ class IndexView(generic.ListView):
 def NewEventView(request):
     template_name = 'meetup_finder_app/Updated_New_Event.html'
     return render(request,template_name)
-
+def Sign2(request):
+    template_name = 'meetup_finder_app/signin2.html'
+    return render(request,template_name)
+def Uprofile(request):
+    template_name = 'meetup_finder_app/userProfile.html'
+    return render(request,template_name)
+    
 def createEvent(request):
     newEvent = Event()
     newEvent.event_name = request.POST['event_name_text']

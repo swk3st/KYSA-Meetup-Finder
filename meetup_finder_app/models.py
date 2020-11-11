@@ -4,7 +4,15 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from allauth.account.forms import LoginForm
+class MyCustomLoginForm(LoginForm):
 
+    def login(self, *args, **kwargs):
+
+        # Add your own processing here.
+
+        # You must return the original result.
+        return super(MyCustomLoginForm, self).login(*args, **kwargs)
 
 class Event(models.Model):
     event_date = models.DateTimeField('event date')

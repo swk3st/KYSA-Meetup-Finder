@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'meetup_finder_app.apps.MeetupFinderAppConfig',
 ]
 
+
 SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {

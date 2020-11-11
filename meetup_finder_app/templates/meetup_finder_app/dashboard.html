@@ -4,7 +4,32 @@
 <!-- {% user_display user %} -->
 {% load static %}
 
-{% block body %}  
+{% block content %}
+<body>
+    <ul>
+        <h2><a href="" class="smoothScroll px-3"><span>Welcome, {% user_display user %} to your account </span></a></h2>
+    </ul>
+</body> 
+
+<div class="row" >
+	<div class="col-md-3">
+		<div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'meetup_finder_app:upcoming' %}">The Events</a>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'meetup_finder_app:newevent' %}">Create an Event</a>
+		</div>
+    </div>
+    <div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">Your Friends</a>
+		</div>
+	</div>
+</div>
 
 
-{% endblock body %}  
+
+{% endblock %}

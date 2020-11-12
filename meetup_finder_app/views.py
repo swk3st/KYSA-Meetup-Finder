@@ -32,17 +32,7 @@ def CreateUser(user):
 def WelcomeView(request):
     template_name = 'meetup_finder_app/dashboard.html'
     return render(request, template_name)
-    template_name = 'meetup_finder_app/userProfile.html'
-
-    if len(AppUser.objects.filter(id=request.user.id)) == 0:
-        CreateUser(request.user)
-
-    try:
-        profile_picture = SocialAccount.objects.get(user_id=request.user.id).extra_data['picture']
-    except:
-        profile_picture = ""
-
-    return render(request, template_name, context={"profile_picture":profile_picture})
+    # template_name = 'meetup_finder_app/userProfile.html'
 
 def SingleEventView(request):
     template_name = 'meetup_finder_app/single_event_view.html'
@@ -50,7 +40,7 @@ def SingleEventView(request):
 
 class IndexView(generic.ListView):
     template_name = 'meetup_finder_app/index.html'
-    #context_object_name = 'latest_question_list'
+
 
     def get_queryset(self):
         """
@@ -68,7 +58,16 @@ def Sign2(request):
     return render(request,template_name)
 def Uprofile(request):
     template_name = 'meetup_finder_app/userProfile.html'
-    return render(request,template_name)
+    if len(AppUser.objects.filter(id=request.user.id)) == 0:
+        CreateUser(request.user)
+
+    try:
+        profile_picture = SocialAccount.objects.get(user_id=request.user.id).extra_data['picture']
+    except:
+        profile_picture = ""
+
+    return render(request, template_name, context={"profile_picture":profile_picture})
+   
     
 def createEvent(request):
     newEvent = Event()

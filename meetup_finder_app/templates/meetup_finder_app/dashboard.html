@@ -21,13 +21,14 @@
 
 {% block content %}
 <body>
-            <div class="wow fadeInUp" data-wow-delay="0.3s" style="text-align: center;background-color: rgba(0,0,0, 0.8);padding:10px;background-image: url('../../static/images/party2.jpg');height:250px;opacity: 0.7;" >
+            <div class="wow fadeInUp" data-wow-delay="0.3s" style="text-align: center;background-color: rgba(0,0,0, 0.8);padding:10px;background-image: url('../../static/images/party2.jpg');height:300px;opacity: 0.7;" >
                 <div class="row" style="display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 100px;">
                 <div class="card">
                     <h2><a href="" class="smoothScroll px-3" style="color:#b41e37 ;opacity: 1.0;"><span>Welcome {% user_display user %} to KYSA </span></a></h2>
+                    <p style="text-align: center;">Click on <a href="{% url 'meetup_finder_app:upcoming' %}" class=" smoothScroll" style="color: #e44c65;"><span>Explore</span></a> in the nav bar to see all events!!</p>
                 </div>
             </div>
                     <br>
@@ -53,6 +54,7 @@
       
    
 <div style="width:100vw;">
+    <br>
     <h3>Your Upcoming Events:</h3>
     <br>
     <div style="width:100vw;display:flex;flex-wrap:wrap;justify-content:center;">

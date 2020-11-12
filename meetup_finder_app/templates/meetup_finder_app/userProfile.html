@@ -6,45 +6,45 @@
 
 {% block content %}
 <body>
-    <!-- <ul>
-        <h2><a href="" class="smoothScroll px-3"><span>{% user_display user %}'s Profile </span></a></h2>
+    <ul>
+        <h2><a href="" class="smoothScroll px-3"><span>My Profile </span></a></h2>
 	</ul>
 	<div class="container border-bottom bg-white mt-1 pt-md-3 pt-2">
 		<div class="d-flex flex-md-row justify-content-around align-items-center">
 			<div class="d-flex flex-md-row align-items-center">
 				<div class="p-md-2 p-1" id="info">
-					<h5>{% user_display user %}</h5>
-					 <div class="text-muted">Sr.Manager</div> -->
-				<!-- </div>
+					<h5>Username: {% user_display user %}</h5>
+					<h5><a href="" class="smoothScroll">Your Friends</a></h5>
+				 </div>
 			</div>
-			<div class="d-flex flex-column" id="info">
+			<!-- <div class="d-flex flex-column" id="info">
 				<div class="p-md-1 text-muted"> <span class="fa fa-envelope-o bg-light p-1 rounded-circle"></span> {{ user.email }}</div>
-			</div>
-			
-        <h1><a href="" class="smoothScroll px-3"><span>Welcome, {% user_display user %} to your account </span></a></h1>  -->
-<!-- 
+			</div> -->
+		
+	
+
 <div class="row" >
 	<div class="col-md-3">
-		<div class="card card-body">
-            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'meetup_finder_app:upcoming' %}">Your Upcoming Events</a>
-		</div>
 		</div>
 		<div class="pl-lg-5 pt-lg-2 pt-md-1"> 
 			<br>
 			<a href="{% url 'meetup_finder_app:account_email_verification_sent' %}" class="smoothScroll"><span><u>Verify your Email</u></span></a>
 			<br>
+			<br>
 			<a href="{% url 'meetup_finder_app:account_email' %}" class="smoothScroll"><span><u> Edit Email</u></span></a>
 			<br>
-			<a href="{% url 'meetup_finder_app:account_change_password' %}" class="smoothScroll"><span><u> Edit Password</u></span></a>
+			<!-- <a href="{% url 'meetup_finder_app:account_change_password' %}" class="smoothScroll"><span><u> Edit Password</u></span></a> -->
 			<br>
 			<a href="{% url 'meetup_finder_app:account_logout' %}" class="smoothScroll"><span><u> Logout</u></span></a>
+			<br>
+			<br>
 		</div>
-	</div> -->
-	
-<!-- </div> -->
-<hr>
+	</div>
+	</div>
+</div>
+<br>
 <div style="width:100vw;">
-<h3>Your Upcoming Events:</h3>
+<ul><h3>Your Upcoming Events:</h3></ul>
 <div style="width:100vw;display:flex;flex-wrap:wrap;justify-content:center;">
 {%for event in user.event_set.all %}
 		<div id="content" style="width:300px;border-style: solid;padding:10px;border-radius:15px">

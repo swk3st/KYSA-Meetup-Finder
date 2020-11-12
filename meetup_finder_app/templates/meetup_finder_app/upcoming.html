@@ -12,16 +12,19 @@
 	<div class="row">
 		<div class="col-md-5 listing-block">
             {% if event_list %}
-        <div class="media">
-            
+        <div class="col-md-9 " style="width: 500px;">   
             <ul>
                {% for event in event_list %}
-               <hr>
-                <a href="{% url 'meetup_finder_app:detail' event.id %}">
-                {{event.event_name}}:</a> <br>
+               <hr >
+               <div style="border: 2px solid black; text-align: center;">
+                <u><a href="{% url 'meetup_finder_app:detail' event.id %}" >
+                {{event.event_name}}</a></u> <br>
                 Description: {{event.event_description}}<br>
-                {{event.event_date}}
-            
+                Time: {{event.event_date}}<br>
+                <form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
+                    <input class="btn btn-primary" type="submit" value="More Details" />
+                </form>
+            </div>
                 {% endfor %}
             </ul>
             
@@ -33,28 +36,11 @@
        
         
 		</div>
-		<div class="col-md-7 map-box mx-0 px-0" style=" max-width: 100%;
-        height: auto; border: 2px solid #555">
-		    <!-- <iframe width="100%" height="495" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&815&sspn=8.047465,13.666992&ie=UTF8&hq=&hnear=15+Springfield+Way,+Hythe+CT21+5SH,+United+Kingdom&t=m&z=14&ll=51.077429,1.121722&output=embed"></iframe> -->
+		<div class="col-md-7 px-0" style=" max-width: 100%;
+        height: auto; border: 2px solid #555; right: 70px;">
             {% include 'meetup_finder_app/multi_event_view.html' %}
         </div>
 	</div>
 </div>
 </section>
 
-{% if event_list %}
-
-    {% include 'meetup_finder_app/multi_event_view.html' %}
-
-    <ul>
-    {% for event in event_list %}
-    <li></li>
-    <a href="{% url 'meetup_finder_app:detail' event.id %}">
-    </li>{{event.event_name}}:
-    <br>{{event.event_description}}<br>
-    {{event.event_date}}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No upcoming events</p>
-{% endif %}

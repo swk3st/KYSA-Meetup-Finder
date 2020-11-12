@@ -2,10 +2,10 @@
 
 {% include 'meetup_finder_app/single_event_view.html' %}
 <div style = "padding-left:8px">
-<h1>{{ event.event_name }}</h1>
+<h1 style="text-align: center;">{{ event.event_name }}</h1>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <h3>Description:</h3><br>
+    <h4>Description:</h4>
     <p>{{event.event_description}}</p>    
 
     {% if user.is_authenticated %}

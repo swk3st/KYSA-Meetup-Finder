@@ -5,6 +5,13 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from allauth.socialaccount.models import SocialAccount
+
+class AppUser(models.Model):
+    id = models.IntegerField(primary_key=True)
+    django_user = models.OneToOneField(User,on_delete=models.CASCADE)
+    friends = models.ManyToManyField("self")
+
 
 class Event(models.Model):
     event_date = models.DateTimeField('event date')

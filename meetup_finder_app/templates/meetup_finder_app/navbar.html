@@ -15,7 +15,7 @@
     <section id="navbar">
       <nav class="navbar navbar-light bg-light justify-content-between">
           <a class="navbar-brand">
-                <a href="" class="navbar-brand smoothScroll">KYSA</a>
+                <a href="" class="navbar-brand smoothScroll"><b>KYSA</b></a>
           </a>
               <ul class="nav navbar-header ml-auto" style="font-size: 20px;">
                 <!-- <form class="form-inline">
@@ -23,16 +23,16 @@
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>  -->
                 <li class="nav-item ml-auto">
-                  <a class="nav-link smoothScroll" href="{% url 'meetup_finder_app:dashboard'%}"><u>Dashboard</u></a>
+                  <a class="nav-link smoothScroll" href="{% url 'meetup_finder_app:dashboard'%}" style="color: #e44c65;">Dashboard</a>
                 </li>
                 <li class="nav-item ml-auto">
-                  <a class="nav-link smoothScroll" href="{% url 'meetup_finder_app:uProfile'%}"><u>My Profile</u></a>
+                  <a class="nav-link smoothScroll" href="{% url 'meetup_finder_app:uProfile'%}" style="color: #e44c65;">My Profile</a>
                 </li>
                 <li class="nav-item ml-auto">
-                <a href="{% url 'meetup_finder_app:upcoming' %}" class="nav-link smoothScroll"><span><u>Explore</u></span></a>
+                <a href="{% url 'meetup_finder_app:upcoming' %}" class="nav-link smoothScroll" style="color: #e44c65;"><span>Explore</span></a>
                 </li>
                 <li class="nav-item ml-auto">
-                  <a href="{% url 'meetup_finder_app:account_logout' %}" class="nav-link smoothScroll"><span><u> Logout</u></span></a>
+                  <a href="{% url 'meetup_finder_app:account_logout' %}" class="nav-link smoothScroll" style="color: #e44c65;"><span> Logout</span></a>
                 </li>
               </ul> 
       </nav>

@@ -6,7 +6,7 @@
 
 {% block content %}
 <body>
-    <ul>
+    <!-- <ul>
         <h2><a href="" class="smoothScroll px-3"><span>{% user_display user %}'s Profile </span></a></h2>
 	</ul>
 	<div class="container border-bottom bg-white mt-1 pt-md-3 pt-2">
@@ -14,22 +14,15 @@
 			<div class="d-flex flex-md-row align-items-center">
 				<div class="p-md-2 p-1" id="info">
 					<h5>{% user_display user %}</h5>
-					<!-- <div class="text-muted">Sr.Manager</div> -->
-				</div>
+					 <div class="text-muted">Sr.Manager</div> -->
+				<!-- </div>
 			</div>
 			<div class="d-flex flex-column" id="info">
 				<div class="p-md-1 text-muted"> <span class="fa fa-envelope-o bg-light p-1 rounded-circle"></span> {{ user.email }}</div>
 			</div>
-			<div class="rounded p-lg-2 p-1" id="blue-background">
-				<div class="d-flex flex-md-row align-items-center">
-					<div class="d-flex flex-column align-items-center px-lg-3 px-md-2 px-1" id="border-right">
-						<p class="h4">00</p>
-						<div class="text-muted" id="count">Events </div>
-					</div>
-				</div>
-			</div>
-        <h1><a href="" class="smoothScroll px-3"><span>Welcome, {% user_display user %} to your account </span></a></h1>
-
+			
+        <h1><a href="" class="smoothScroll px-3"><span>Welcome, {% user_display user %} to your account </span></a></h1>  -->
+<!-- 
 <div class="row" >
 	<div class="col-md-3">
 		<div class="card card-body">
@@ -46,18 +39,12 @@
 			<br>
 			<a href="{% url 'meetup_finder_app:account_logout' %}" class="smoothScroll"><span><u> Logout</u></span></a>
 		</div>
-<<<<<<< HEAD
-	<!-- </div> -->
-
-
-</body> 
-
-=======
-	</div>
-</div>
+	</div> -->
+	
+<!-- </div> -->
 <hr>
 <div style="width:100vw;">
-<h3>Your upcoming events:</h3>
+<h3>Your Upcoming Events:</h3>
 <div style="width:100vw;display:flex;flex-wrap:wrap;justify-content:center;">
 {%for event in user.event_set.all %}
 		<div id="content" style="width:300px;border-style: solid;padding:10px;border-radius:15px">
@@ -80,7 +67,6 @@
 {%endfor%}
 </div>
 </div>
->>>>>>> 4e55e8fa17da226756deeb17accd460dd08c2eb3
 
 
 {% endblock %}

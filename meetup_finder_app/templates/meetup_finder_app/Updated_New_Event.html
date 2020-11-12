@@ -18,32 +18,32 @@
             <div class="col-md-5">
               <div class="card card-body">
 
-        <form action="{% url 'meetup_finder_app:createEvent'  %}" method="post">
+        <form action="{% url 'meetup_finder_app:createEvent' %}" method="post">
             {% csrf_token %}
             <label>event name:</label><br>
-            <input type="text" id="event_name_text" name="event_name_text"><br>
+            <input type="text" id="event_name_text" name="event_name_text" required><br>
 
             <label>organizer name:</label><br>
-            <input type="text" id="organizer" name = "organizer"><br>
+            <input type="text" id="organizer" name = "organizer" required><br>
 
             <label>Details:</label><br>
-            <input type="text" id='detail_text' name="detail_text"><br>
+            <input type="text" id='detail_text' name="detail_text" required><br>
 
             <label>Date:</label><br>
             <input type="datetime-local" id="event_time"
-            name="event_time"><br>
+            name="event_time" required><br>
 
             <label>Location</label><br>
             <input type="text" id="location" name="location"><br>
 
             <label>Address</label><br>
-            <input type="text" id="address" name="address" onfocusout="validateAddress()"><br>
+            <input type="text" id="address" name="address" onfocusout="validateAddress()" required><br>
 
             <label>City</label><br>
-            <input type="text" id="city" name="city" onfocusout="validateAddress()"><br>
+            <input type="text" id="city" name="city" onfocusout="validateAddress()" required><br>
 
             <label>State</label><br>
-            <input type="text" id="state" name="state" onfocusout="validateAddress()"><br>
+            <input type="text" id="state" name="state" onfocusout="validateAddress()" required><br>
 
             <!-- GeoLocation Data -->
             <input type="hidden" id="lattitude" name="lat">

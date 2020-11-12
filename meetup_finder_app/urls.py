@@ -20,5 +20,7 @@ urlpatterns = [
     path('single_map_vew/', views.SingleEventView, name="eventView"),
     path('signin2/',views.Sign2, name="signin2"),
     path('profile/',views.Uprofile, name="uProfile"),
+    path('showInterest/', views.showInterest, name="show_interest"),
+    path('revokeInterest/', views.revokeInterest, name="revoke_interest"),
     path('', views.HomeView.as_view(), name='home'),
 ]

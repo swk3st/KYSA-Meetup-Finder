@@ -12,6 +12,7 @@ from django.urls import reverse
 from django.views import generic
 from django.views.generic.base import TemplateView
 from .models import Event
+from django.contrib.auth.models import User
 
 class HomeView(TemplateView):
     template_name = 'meetup_finder_app/home.html'
@@ -66,6 +67,31 @@ def createEvent(request):
         # user hits the Back button.
     return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':newEvent.id}))
 
+def showInterest(request):
+    userid = request.POST['User']
+    eventid = request.POST['Event']
+
+    event = Event.objects.get(id=eventid)
+    user = User.objects.get(id=userid)
+
+    event.interested_users.add(user)
+
+    event.save()
+    return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':eventid}))
+
+def revokeInterest(request):
+    userid = request.POST['User']
+    eventid = request.POST['Event']
+
+    event = Event.objects.get(id=eventid)
+    user = User.objects.get(id=userid)
+
+    event.interested_users.remove(user)
+
+    print(user.event_set.all())
+
+    event.save()
+    return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':eventid}))
 
 class UpcomingView(generic.ListView):
     template_name = 'meetup_finder_app/upcoming.html'

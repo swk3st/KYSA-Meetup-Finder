@@ -34,6 +34,7 @@ def WelcomeView(request):
 
     if len(AppUser.objects.filter(id=request.user.id)) == 0:
         CreateUser(request.user)
+
     try:
         profile_picture = SocialAccount.objects.get(user_id=request.user.id).extra_data['picture']
     except:
@@ -64,8 +65,8 @@ def NewEventView(request):
 def createEvent(request):
     newEvent = Event()
     newEvent.event_name = request.POST['event_name_text']
-    newEvent.event_date = request.POST['event_time'] # request.user
-    newEvent.event_organizer = request.POST['organizer']
+    newEvent.event_date = request.POST['event_time'] 
+    newEvent.event_organizer = request.POST['organizer'] # request.user
     newEvent.event_description = request.POST['detail_text']
     newEvent.event_location = request.POST['address']
     newEvent.lat = request.POST['lat']

@@ -11,15 +11,38 @@ from django.utils import timezone
 from django.urls import reverse
 from django.views import generic
 from django.views.generic.base import TemplateView
-from .models import Event
+from .models import Event, AppUser
 from django.contrib.auth.models import User
+from allauth.socialaccount.models import SocialAccount
+
 
 class HomeView(TemplateView):
     template_name = 'meetup_finder_app/home.html'
 
+
+def CreateUser(user):
+    print("Creating New User")
+    try:
+        social_account = SocialAccount.objects.filter(user_id=user.id)[0]
+        new_user = AppUser(id=user.id,django_user=user)
+        new_user.save()
+    finally:
+        pass
+
 def WelcomeView(request):
     template_name = 'meetup_finder_app/dashboard.html'
     return render(request, template_name)
+    template_name = 'meetup_finder_app/userProfile.html'
+
+    if len(AppUser.objects.filter(id=request.user.id)) == 0:
+        CreateUser(request.user)
+
+    try:
+        profile_picture = SocialAccount.objects.get(user_id=request.user.id).extra_data['picture']
+    except:
+        profile_picture = ""
+
+    return render(request, template_name, context={"profile_picture":profile_picture})
 
 def SingleEventView(request):
     template_name = 'meetup_finder_app/single_event_view.html'
@@ -50,8 +73,8 @@ def Uprofile(request):
 def createEvent(request):
     newEvent = Event()
     newEvent.event_name = request.POST['event_name_text']
-    newEvent.event_date = request.POST['event_time']
-    newEvent.event_organizer = request.POST['organizer']
+    newEvent.event_date = request.POST['event_time'] 
+    newEvent.event_organizer = request.POST['organizer'] # request.user
     newEvent.event_description = request.POST['detail_text']
     newEvent.event_location = request.POST['address']
     newEvent.lat = request.POST['lat']
@@ -68,6 +91,7 @@ def createEvent(request):
     return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':newEvent.id}))
 
 def showInterest(request):
+
     userid = request.POST['User']
     eventid = request.POST['Event']
 
@@ -80,6 +104,7 @@ def showInterest(request):
     return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':eventid}))
 
 def revokeInterest(request):
+
     userid = request.POST['User']
     eventid = request.POST['Event']
 

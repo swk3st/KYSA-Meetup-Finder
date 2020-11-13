@@ -1,12 +1,44 @@
-
-
 {% include 'meetup_finder_app/navbar.html' %}
 
 {% include 'meetup_finder_app/single_event_view.html' %}
 <div style = "padding-left:8px">
-<h1>{{ event.event_name }}</h1>
+<h1 style="text-align: center;">{{ event.event_name }}</h1>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <h3>Description:</h3><br>
-    <p>{{event.event_description}}</p>            
+    <h4>Description:</h4>
+    <p>{{event.event_description}}</p>    
+
+    {% if user.is_authenticated %}
+
+
+        {% if user in event.all_users%}
+
+            <h5>You're going to this event! <br> See you on {{event.event_date}}!</h5><br>
+            <form action="{% url 'meetup_finder_app:revoke_interest' %}" method="post">
+            {% csrf_token %}
+                <input type="hidden" id="eid" name="Event" value="{{event.id}}">
+                <input type="hidden" id="uid" name="User" value="{{user.id}}">
+                <input type="submit" class="btn btn-primary" value="No Longer Interested">
+            </form>
+        {% else %}
+            <h5>Are you interested? <br> Let others know you're going!</h5><br>
+            <form action="{% url 'meetup_finder_app:show_interest' %}" method="post">
+            {% csrf_token %}
+                <input type="hidden" id="eid" name="Event" value="{{event.id}}">
+                <input type="hidden" id="uid" name="User" value="{{user.id}}">
+                <input type="submit" class="btn btn-primary" value="Interested">
+            </form>
+        {% endif %}
+
+        <hr>
+        <h5>Interested Users:</h5>
+        <ul>
+        {%for u in event.all_users%}
+            {%if not user.id == u.id %}
+            <li>{{u}}</li>
+            {%endif%}
+        {% endfor %}
+        </ul>
+
+    {% endif %}     
 </div> 

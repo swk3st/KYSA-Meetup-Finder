@@ -4,7 +4,84 @@
 <!-- {% user_display user %} -->
 {% load static %}
 
-{% block body %}  
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}KYSA Meetup Finder{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'test/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'test/owl.carousel.css' %}"> 
+    <link rel="stylesheet" href="{% static 'test/owl.theme.css' %}"> 
+    <link rel="stylesheet" href="{% static 'test/style.css' %}">
+    
 
+    {% block stylesheet %}{% endblock %}  
+</head>
 
-{% endblock body %}  
+{% block content %}
+<body>
+            <div class="wow fadeInUp" data-wow-delay="0.3s" style="text-align: center;background-color: rgba(0,0,0, 0.8);padding:10px;background-image: url('../../static/images/party2.jpg');height:300px;opacity: 0.7;" >
+                <div class="row" style="display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100px;">
+                <div class="card">
+                    <h2><a href="" class="smoothScroll px-3" style="color:#b41e37 ;opacity: 1.0;"><span>Welcome {% user_display user %} to KYSA </span></a></h2>
+                    <p style="text-align: center;">Click on <a href="{% url 'meetup_finder_app:upcoming' %}" class=" smoothScroll" style="color: #e44c65;"><span>Explore</span></a> in the nav bar to see all events!!</p>
+                </div>
+            </div>
+                    <br>
+                <div class="row" style=" display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100px;
+                 "  >
+                    <div class="col-md-3">
+                        <div class="card " >
+                            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'meetup_finder_app:newevent' %}" >Create an Event</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <a class="btn btn-primary btn-sm btn-block" href="" >Your Friends</a>
+                        </div>
+                    </div>
+                </div>
+        
+        </div>
+     
+      
+   
+<div style="width:100vw;">
+    <br>
+    <h3>Your Upcoming Events:</h3>
+    <br>
+    <div style="width:100vw;display:flex;flex-wrap:wrap;justify-content:center;">
+        {% for event in user.event_set.all %}
+            <div id="content" style="width:300px;border-style: solid;padding:10px;border-radius:15px">
+                <div id="siteNotice"></div>
+                <h1 id="firstHeading" class="firstHeading">{{ event.event_name }}</h1> 
+                <div id="bodyContent"> 
+                    <hr>
+                    <h5>By:</h5>
+                    <p>{{ event.event_organizer }}</p>
+                    <h6>Description:</h6>
+                    <p>{{ event.event_description }}</p>
+                    <h6>When:</h6>
+                    <p>{{ event.event_date }}</p>
+                    <br>
+                    <form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
+                        <input class="btn btn-primary" type="submit" value="More Details" />
+                    </form>
+                </div>
+            </div>
+    {%endfor%}
+
+    </div>
+    
+    </div>
+    
+</body> 
+
+{% endblock %}

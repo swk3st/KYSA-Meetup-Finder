@@ -1,0 +1,78 @@
+{% load i18n account %}
+{% load static %}
+{% load socialaccount %}
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'csstest.css' %}">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
+</head>
+<body>  
+    {% block content %}
+    <div class="container">
+     
+        <div class="kpx_login">
+            <h3 class="kpx_authTitle">Login or <a href="{% url 'account_signup' %}">Sign up</a></h3>
+            <div class="row kpx_row-sm-offset-3 kpx_socialButtons">
+              <div class="col-xs-2 col-sm-2" style="margin-left: auto;margin-right: auto; width: 50%;">
+                <a href="{% provider_login_url 'google' %}" class="btn btn-lg btn-block kpx_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
+                  <i class="fa fa-google-plus fa-2x"></i>
+                  <span class="hidden-xs"></span>
+                </a>
+              </div>  
+        </div>
+        <br>
+            <div class="row kpx_row-sm-offset-3 kpx_loginOr">
+                <div class="col-xs-12 col-sm-6">
+                    <hr class="kpx_hrOr">
+                    <span class="kpx_spanOr">or</span>
+                </div>
+            </div>
+    
+            <div class="row kpx_row-sm-offset-3">
+                <div class="col-xs-12 col-sm-6">
+                    <form class="login" class="kpx_loginForm" method="POST" action="{% url 'account_login' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="input-group">
+                            <input id="id_login" class="login-input form-control" maxlength="30" name="login" placeholder="Username" type="text" />{{ form.login.errors }}<br>
+                        </div>
+                  
+                        <div class="input-group">
+                        <input id="id_password"  class="login-input form-control" name="password" placeholder="Password" type="password" />{{ form.password.errors }}<br>
+                        </div>
+                        <div>
+                            <input id="id_remember" name="remember" type="checkbox" />
+                            <label for="id_remember">Remember Me</label>
+                            
+                        </div>
+                      {% if redirect_field_value %}
+                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                      {% endif %}
+            
+                      <button class="btn btn-lg btn-outline-primary btn-block" type="submit">{% trans "Sign In" %}</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row kpx_row-sm-offset-3">
+               
+                <div class=" col-sm-2">
+                    <p class="kpx_forgotPwd">
+                        <a href="{% url 'account_reset_password' %}">Forgot password?</a>
+                    </p>
+                </div>
+                
+    
+            </div>	    	
+        </div>
+            </div>
+            <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+    {% endblock %} 
+</body>

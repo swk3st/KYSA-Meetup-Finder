@@ -16,6 +16,8 @@ class Event(models.Model):
                              on_delete=models.CASCADE)
     event_location = models.CharField(max_length=200)
     event_name = models.CharField(max_length=200)
+    lat = models.FloatField(default=38.036411)
+    lng = models.FloatField(default=-78.502455)
     def __str__(self):
         return self.event_description
     def coming_up(self):

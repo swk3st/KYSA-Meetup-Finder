@@ -102,14 +102,7 @@ WSGI_APPLICATION = 'meetup_finder.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if os.environ.get("APP_PROD") == None:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
+if os.environ.get("APP_PROD") != None:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -120,6 +113,25 @@ else:
             'PORT': '5432',
         }
     }
+elif os.environ.get("APP_PPE") !!= None:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd7d8327lelfr20',
+            'USER': 'zxqkzcosumqbrv',
+            'PASSWORD': '046d8e18b7b4a73bf4a5386642d0755bbc32f2d1703475c37af4a5eca0b283bc',
+            'HOST': 'ec2-52-20-248-222.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 
 # Password validation

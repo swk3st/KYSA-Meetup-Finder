@@ -113,7 +113,7 @@ if os.environ.get("APP_PROD") != None:
             'PORT': '5432',
         }
     }
-elif os.environ.get("APP_PPE") !!= None:
+elif os.environ.get("APP_PPE") != None:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',

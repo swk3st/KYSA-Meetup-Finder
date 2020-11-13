@@ -102,7 +102,7 @@ WSGI_APPLICATION = 'meetup_finder.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if os.environ.get("PROD") == None:
+if os.environ.get("APP_PROD") == None:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

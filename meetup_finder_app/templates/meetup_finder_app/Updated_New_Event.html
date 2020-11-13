@@ -68,8 +68,8 @@
         addr = addr.split(" ").join("+");
         city = city.split(" ").join("+");
         state = state.split(" ").join("+");
-        console.log(`http://open.mapquestapi.com/geocoding/v1/address?key=${key}&location=${addr},${city},${state}`)
-        return fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=${key}&location=${addr},${city},${state}`)
+        console.log(`https://open.mapquestapi.com/geocoding/v1/address?key=${key}&location=${addr},${city},${state}`)
+        return fetch(`https://open.mapquestapi.com/geocoding/v1/address?key=${key}&location=${addr},${city},${state}`)
     }
 
     function validateAddress(){

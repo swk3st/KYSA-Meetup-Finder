@@ -73,7 +73,7 @@ def createEvent(request):
     newEvent = Event()
     newEvent.event_name = request.POST['event_name_text']
     newEvent.event_date = request.POST['event_time'] 
-    newEvent.event_organizer = request.POST['organizer'] # request.user
+    newEvent.event_organizer = request.user
     newEvent.event_description = request.POST['detail_text']
     newEvent.event_location = request.POST['address']
     newEvent.lat = request.POST['lat']
@@ -88,6 +88,13 @@ def createEvent(request):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
     return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':newEvent.id}))
+
+def deleteEvent(request):
+    event = Event.objects.get(id=request.POST['Event'])
+    if event:
+        event.delete()
+    return HttpResponseRedirect(reverse('meetup_finder_app:dashboard'))
+
 
 def showInterest(request):
 

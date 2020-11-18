@@ -22,5 +22,6 @@ urlpatterns = [
     path('profile/',views.Uprofile, name="uProfile"),
     path('showInterest/', views.showInterest, name="show_interest"),
     path('revokeInterest/', views.revokeInterest, name="revoke_interest"),
+    path('deleteEvent/', views.deleteEvent, name="delete_event"),
     path('', views.HomeView.as_view(), name='home'),
 ]

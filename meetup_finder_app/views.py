@@ -42,6 +42,12 @@ def WelcomeView(request):
 
     return render(request, template_name, context={"profile_picture":profile_picture})
 
+def FriendsView(request):
+    template_name = 'meetup_finder_app/friends.html'
+    AUser = AppUser.objects.get(id = request.user.id)
+
+    return render(request, template_name, context = {'friends_list':AUser.friends.all})
+
 def SingleEventView(request):
     template_name = 'meetup_finder_app/single_event_view.html'
     return render(request, template_name, context={"event":{"lat":38.028212,"lng":-78.511077}})

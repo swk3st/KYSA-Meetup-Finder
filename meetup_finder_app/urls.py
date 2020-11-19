@@ -22,5 +22,6 @@ urlpatterns = [
     path('profiles/<int:user_id>',views.singleProfileView, name="singleProfile"),
     path('addFriend/',views.addFriend, name = 'addFriend'),
     path('removeFriend/',views.removeFriend, name = 'removeFriend'),
+    path('friends/', views.FriendsView, name = 'FriendsView'),
     path('', views.HomeView.as_view(), name='home'),
 ]

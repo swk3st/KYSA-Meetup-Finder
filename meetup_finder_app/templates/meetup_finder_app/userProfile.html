@@ -16,7 +16,7 @@
 			<div class="d-flex flex-md-row align-items-center">
 				<div class="p-md-2 p-1" id="info">
 					<h5>Username: {% user_display user %}</h5>
-					<h5><a href="" class="smoothScroll">Your Friends</a></h5>
+					<!-- <h5><a href="" class="smoothScroll">Your Friends</a></h5> -->
 				 </div>
 			</div>
 			
@@ -24,6 +24,10 @@
 <div class="row" >
 	<div class="col-md-3">
 		</div>
+    </div>
+    <div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'meetup_finder_app:FriendsView' %}">Your Friends</a>
 		<div class="pl-lg-5 pt-lg-2 pt-md-1"> 
 			<br>
 			<a href="{% url 'meetup_finder_app:account_email_verification_sent' %}" class="smoothScroll"><span><u>Verify your Email</u></span></a>

@@ -11,13 +11,15 @@ class AppUser(models.Model):
     id = models.IntegerField(primary_key=True)
     django_user = models.OneToOneField(User,on_delete=models.CASCADE)
     friends = models.ManyToManyField("self")
+    def __str__(self):
+        return str(self.id)
 
 
 class Event(models.Model):
     event_date = models.DateTimeField('event date')
     # need to add event name field sometime soon
     event_description = models.CharField(max_length=200)
-    event_organizer = models.CharField(max_length=200)
+    event_organizer = models.ForeignKey(User,related_name="owner",on_delete=models.CASCADE)
     event_location = models.CharField(max_length=200)
     event_name = models.CharField(max_length=200)
     lat = models.FloatField(default=38.036411)

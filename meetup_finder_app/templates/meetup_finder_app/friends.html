@@ -1,0 +1,13 @@
+{% extends 'meetup_finder_app/main.html' %}
+
+{% block content %}
+
+{% if friends_list %}
+{%for u in friends_list%}
+
+    <li><a href = "{% url 'meetup_finder_app:singleProfile' u.id %}">{{u.django_user}}</a></li>
+
+{% endfor %}
+{% endif %}
+
+{% endblock %}

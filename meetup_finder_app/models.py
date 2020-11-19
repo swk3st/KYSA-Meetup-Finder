@@ -11,6 +11,8 @@ class AppUser(models.Model):
     id = models.IntegerField(primary_key=True)
     django_user = models.OneToOneField(User,on_delete=models.CASCADE)
     friends = models.ManyToManyField("self")
+    def __str__(self):
+        return str(self.id)
 
 
 class Event(models.Model):

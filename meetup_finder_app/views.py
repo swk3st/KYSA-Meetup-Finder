@@ -34,6 +34,12 @@ def WelcomeView(request):
     return render(request, template_name)
     # template_name = 'meetup_finder_app/userProfile.html'
 
+def FriendsView(request):
+    template_name = 'meetup_finder_app/friends.html'
+    AUser = AppUser.objects.get(id = request.user.id)
+
+    return render(request, template_name, context = {'friends_list':AUser.friends.all})
+
 def SingleEventView(request):
     template_name = 'meetup_finder_app/single_event_view.html'
     return render(request, template_name, context={"event":{"lat":38.028212,"lng":-78.511077}})
@@ -124,6 +130,32 @@ def revokeInterest(request):
     event.save()
     return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':eventid}))
 
+def singleProfileView(request, user_id):
+    context = {
+        'profile': AppUser.objects.get(id=user_id),
+        'friends': AppUser.objects.get(id = request.user.id).friends
+    }
+    return render(request, 'meetup_finder_app/singleProfileView.html', context)
+
+
+
+def removeFriend(request):
+    user_profile = AppUser.objects.get(id=request.POST['User'])
+    friend_profile = AppUser.objects.get(id=request.POST['Friend'])
+    user_profile.friends.remove(friend_profile)
+    user_profile.save()
+    friend_profile.save()
+    return HttpResponseRedirect(reverse('meetup_finder_app:singleProfile',kwargs={'user_id':friend_profile.id}))
+
+def addFriend(request):
+    user_profile = AppUser.objects.get(id=request.POST['User'])
+    friend_profile = AppUser.objects.get(id=request.POST['Friend'])
+    user_profile.friends.add(friend_profile)
+    user_profile.save()
+    friend_profile.save()
+    return HttpResponseRedirect(reverse('meetup_finder_app:singleProfile',kwargs={'user_id':friend_profile.id}))
+
+
 class UpcomingView(generic.ListView):
     template_name = 'meetup_finder_app/upcoming.html'
     #context_object_name = 'latest_question_list'
@@ -138,5 +170,5 @@ class DetailView(generic.DetailView):
     model = Event
     template_name = 'meetup_finder_app/detail.html'
 
-    
-    
+
+

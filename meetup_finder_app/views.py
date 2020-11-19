@@ -30,17 +30,9 @@ def CreateUser(user):
         pass
 
 def WelcomeView(request):
-    template_name = 'meetup_finder_app/userProfile.html'
-
-    if len(AppUser.objects.filter(id=request.user.id)) == 0:
-        CreateUser(request.user)
-
-    try:
-        profile_picture = SocialAccount.objects.get(user_id=request.user.id).extra_data['picture']
-    except:
-        profile_picture = ""
-
-    return render(request, template_name, context={"profile_picture":profile_picture})
+    template_name = 'meetup_finder_app/dashboard.html'
+    return render(request, template_name)
+    # template_name = 'meetup_finder_app/userProfile.html'
 
 def FriendsView(request):
     template_name = 'meetup_finder_app/friends.html'
@@ -54,7 +46,7 @@ def SingleEventView(request):
 
 class IndexView(generic.ListView):
     template_name = 'meetup_finder_app/index.html'
-    #context_object_name = 'latest_question_list'
+
 
     def get_queryset(self):
         """
@@ -67,12 +59,27 @@ class IndexView(generic.ListView):
 def NewEventView(request):
     template_name = 'meetup_finder_app/Updated_New_Event.html'
     return render(request,template_name)
+def Sign2(request):
+    template_name = 'meetup_finder_app/signin2.html'
+    return render(request,template_name)
+def Uprofile(request):
+    template_name = 'meetup_finder_app/userProfile.html'
+    if len(AppUser.objects.filter(id=request.user.id)) == 0:
+        CreateUser(request.user)
 
+    try:
+        profile_picture = SocialAccount.objects.get(user_id=request.user.id).extra_data['picture']
+    except:
+        profile_picture = ""
+
+    return render(request, template_name, context={"profile_picture":profile_picture})
+   
+    
 def createEvent(request):
     newEvent = Event()
     newEvent.event_name = request.POST['event_name_text']
     newEvent.event_date = request.POST['event_time'] 
-    newEvent.event_organizer = request.POST['organizer'] # request.user
+    newEvent.event_organizer = request.user
     newEvent.event_description = request.POST['detail_text']
     newEvent.event_location = request.POST['address']
     newEvent.lat = request.POST['lat']
@@ -87,6 +94,13 @@ def createEvent(request):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
     return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':newEvent.id}))
+
+def deleteEvent(request):
+    event = Event.objects.get(id=request.POST['Event'])
+    if event:
+        event.delete()
+    return HttpResponseRedirect(reverse('meetup_finder_app:dashboard'))
+
 
 def showInterest(request):
 

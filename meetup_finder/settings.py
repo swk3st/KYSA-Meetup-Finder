@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'meetup_finder_app.apps.MeetupFinderAppConfig',
 ]
 
+
 SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -101,12 +102,36 @@ WSGI_APPLICATION = 'meetup_finder.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.environ.get("APP_PROD") != None:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'deia70hb2ss0dm',
+            'USER': 'khymtfgsusjmay',
+            'PASSWORD': 'cd128bdf6fd220691e8a3a6728bae3d7965311660065af9023f9fb3fc871a02f',
+            'HOST': 'ec2-23-23-36-227.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
     }
-}
+elif os.environ.get("APP_PPE") != None:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd7d8327lelfr20',
+            'USER': 'zxqkzcosumqbrv',
+            'PASSWORD': '046d8e18b7b4a73bf4a5386642d0755bbc32f2d1703475c37af4a5eca0b283bc',
+            'HOST': 'ec2-52-20-248-222.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 
 # Password validation

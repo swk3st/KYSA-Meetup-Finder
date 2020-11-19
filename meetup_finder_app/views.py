@@ -30,11 +30,15 @@ def CreateUser(user):
         pass
 
 def WelcomeView(request):
+    if len(AppUser.objects.filter(id=request.user.id)) == 0:
+        CreateUser(request.user)
     template_name = 'meetup_finder_app/dashboard.html'
     return render(request, template_name)
     # template_name = 'meetup_finder_app/userProfile.html'
 
 def FriendsView(request):
+    if len(AppUser.objects.filter(id=request.user.id)) == 0:
+        CreateUser(request.user)
     template_name = 'meetup_finder_app/friends.html'
     AUser = AppUser.objects.get(id = request.user.id)
 

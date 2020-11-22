@@ -67,20 +67,18 @@
             </div>
         </section>
 
-{% if friends_list %}
+        {% if friends_list %}
 
-    {%for u in friends_list%}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="people-nearby">
-                  
-                  <div class="nearby-user">
-                    <div class="row">
-                         <div class="col-md-7 col-sm-7">
-                        <h5><a href="{% url 'meetup_finder_app:singleProfile' u.id %}" class="profile-link"> {{u.django_user.first_name}} {{u.django_user.last_name}} </a> </h5>
-                      </div>
-<!--                       
+        {%for u in friends_list%}
+        <div class="container">
+            <div class="nearby-user">
+                <div class="row">
+
+                    <div class="col-md-7 col-sm-7">
+                        <h5><a href="{% url 'meetup_finder_app:singleProfile' u.id %}" class="profile-link">
+                                {{u.django_user.first_name}} {{u.django_user.last_name}} </a> </h5>
+                    </div>
+                    <!--                       
                     <div class="col-md-3 col-sm-3">
                         <form action="{% url 'meetup_finder_app:removeFriend' %}" method="post">
                             {% csrf_token %}
@@ -89,12 +87,12 @@
                             <input type="submit" class="btn btn-sm btn-outline-secondary" value="Remove Friend">
                         </form>
                       </div>
--->  
-                    </div>
-                
-                  </div>
+-->
+                </div>
 
-{% endfor %}
-{% endif %}
+            </div>
 
-{% endblock %}
+            {% endfor %}
+            {% endif %}
+
+            {% endblock %}

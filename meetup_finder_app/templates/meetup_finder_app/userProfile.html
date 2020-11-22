@@ -45,28 +45,37 @@
 	</div>
 </div>
 <br>
-<div style="width:100vw;">
-<ul><h3>Your Upcoming Events:</h3></ul>
-<div style="width:100vw;display:flex;flex-wrap:wrap;justify-content:center;">
-{%for event in user.event_set.all %}
-		<div id="content" style="width:300px;border-style: solid;padding:10px;border-radius:15px">
-			<div id="siteNotice"></div>
-			<h1 id="firstHeading" class="firstHeading">{{ event.event_name }}</h1> 
-			<div id="bodyContent"> 
-				<hr>
-				<h5>By:</h5>
-				<p>{{ event.event_organizer }}</p>
-				<h6>Description:</h6>
-				<p>{{ event.event_description }}</p>
-				<h6>When:</h6>
-				<p>{{ event.event_date }}</p>
-				<br>
-				<form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
-					<input class="btn btn-primary" type="submit" value="Details" />
-				</form>
+<div class="album py-5 bg-light">
+	<div class="container">
+		<h2>Your Upcoming Events:</h2>
+		<br>
+		<div class="row">
+
+			{% for event in user.event_set.all %}
+			<div class="col-md-4">
+				<div class="card mb-4 shadow-sm">
+					<div class="card-body">
+						<h1 id="firstHeading" class="firstHeading">{{ event.event_name }}</h1>
+						<div id="bodyContent">
+							<hr>
+							<h5>By:</h5>
+							<p>{{ event.event_organizer }}</p>
+							<h6>Description:</h6>
+							<p>{{ event.event_description }}</p>
+							<h6>When:</h6>
+							<p>{{ event.event_date }}</p>
+							<br>
+							<form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
+								<input class="btn btn-sm btn-outline-secondary" type="submit" value="Details" />
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>`
-{%endfor%}
+
+			{%endfor%}
+		</div>
+	</div>
 </div>
 </div>
 

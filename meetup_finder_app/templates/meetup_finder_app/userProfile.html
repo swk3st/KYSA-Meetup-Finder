@@ -1,5 +1,5 @@
 {%  extends 'meetup_finder_app/main.html' %}
-{% load account %}
+{% load account socialaccount %}
 
 <!-- {% user_display user %} -->
 {% load static %}
@@ -7,29 +7,70 @@
 {% block content %}
 <body>
     <ul>
-        <h2><a href="" class="smoothScroll px-3"><span>Welcome, {% user_display user %} to your account </span></a></h2>
-    </ul>
-</body> 
+        <h2><a href="" class="smoothScroll px-3"><span>My Profile </span></a></h2>
+	</ul>
+	<div class="container border-bottom bg-white mt-1 pt-md-3 pt-2">
+		<div class="d-flex flex-md-row justify-content-around align-items-center">
+			<img class="rounded-circle" style="border: 2px solid #555; width: 100px;
+			height: 100px;" src="{{ profile_picture }}">
+			<div class="d-flex flex-md-row align-items-center">
+				<div class="p-md-2 p-1" id="info">
+					<h5>Username: {% user_display user %}</h5>
+					<!-- <h5><a href="" class="smoothScroll">Your Friends</a></h5> -->
+				 </div>
+			</div>
+			
 
 <div class="row" >
 	<div class="col-md-3">
-		<div class="card card-body">
-            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'meetup_finder_app:upcoming' %}">Your Upcoming Events</a>
-		</div>
-	</div>
-
-	<div class="col-md-3">
-		<div class="card card-body">
-			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'meetup_finder_app:newevent' %}">Create an Event</a>
 		</div>
     </div>
     <div class="col-md-3">
 		<div class="card card-body">
-			<a class="btn btn-primary  btn-sm btn-block" href="">Your Friends</a>
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'meetup_finder_app:FriendsView' %}">Your Friends</a>
+		<div class="pl-lg-5 pt-lg-2 pt-md-1"> 
+			<br>
+			<a href="{% url 'meetup_finder_app:account_email_verification_sent' %}" class="smoothScroll"><span><u>Verify your Email</u></span></a>
+			<br>
+			<br>
+			<a href="{% url 'meetup_finder_app:account_email' %}" class="smoothScroll"><span><u> Edit Email</u></span></a>
+			<br>
+			<!-- <a href="{% url 'meetup_finder_app:account_change_password' %}" class="smoothScroll"><span><u> Edit Password</u></span></a> -->
+			<br>
+			<a href="{% url 'meetup_finder_app:account_logout' %}" class="smoothScroll"><span><u> Logout</u></span></a>
+			<br>
+			<br>
 		</div>
 	</div>
+	</div>
+</div>
+<br>
+<div style="width:100vw;">
+<ul><h3>Your Upcoming Events:</h3></ul>
+<div style="width:100vw;display:flex;flex-wrap:wrap;justify-content:center;">
+{%for event in user.event_set.all %}
+		<div id="content" style="width:300px;border-style: solid;padding:10px;border-radius:15px">
+			<div id="siteNotice"></div>
+			<h1 id="firstHeading" class="firstHeading">{{ event.event_name }}</h1> 
+			<div id="bodyContent"> 
+				<hr>
+				<h5>By:</h5>
+				<p>{{ event.event_organizer }}</p>
+				<h6>Description:</h6>
+				<p>{{ event.event_description }}</p>
+				<h6>When:</h6>
+				<p>{{ event.event_date }}</p>
+				<br>
+				<form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
+					<input class="btn btn-primary" type="submit" value="Details" />
+				</form>
+			</div>
+		</div>`
+{%endfor%}
+</div>
 </div>
 
 
-
 {% endblock %}
+
+</body> 

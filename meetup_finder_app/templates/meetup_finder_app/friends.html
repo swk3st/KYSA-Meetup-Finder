@@ -10,4 +10,30 @@
 {% endfor %}
 {% endif %}
 
+<h3>Friend Requests</h3>
+{% if requested_list %}
+{% for r in requested_list %}
+
+    <li>
+        <p>{{r.django_user.first_name}} {{r.django_user.last_name}}</p><br>
+        
+        <form action="{% url 'meetup_finder_app:addFriend' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="fid" name="Friend" value="{{r.id}}">
+            <input type="hidden" id="uid" name="User" value="{{user.id}}">
+            <input type="submit" class="btn btn-primary" value="ConfirmFriend">
+        </form>
+        <br>
+
+        <form action="{% url 'meetup_finder_app:rejectFriend' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="fid" name="Friend" value="{{r.id}}">
+            <input type="hidden" id="uid" name="User" value="{{user.id}}">
+            <input type="submit" class="btn btn-primary" value="Reject Friend">
+        </form>
+        
+    </li>
+{% endfor %}
+{% endif %}
+
 {% endblock %}

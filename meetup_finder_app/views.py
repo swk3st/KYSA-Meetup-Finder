@@ -42,7 +42,7 @@ def FriendsView(request):
     template_name = 'meetup_finder_app/friends.html'
     AUser = AppUser.objects.get(id = request.user.id)
 
-    return render(request, template_name, context = {'friends_list':AUser.friends.all})
+    return render(request, template_name, context = {'friends_list':AUser.friends.all, 'requested_list':AUser.requested_friends.all})
 
 def SingleEventView(request):
     template_name = 'meetup_finder_app/single_event_view.html'
@@ -135,11 +135,24 @@ def revokeInterest(request):
     return HttpResponseRedirect(reverse('meetup_finder_app:detail',kwargs={'pk':eventid}))
 
 def singleProfileView(request, user_id):
+    p = AppUser.objects.get(id=user_id)
+    friends = AppUser.objects.get(id = request.user.id).friends
+    AUser = AppUser.objects.get(id = request.user.id)
     context = {
         'profile': AppUser.objects.get(id=user_id),
-        'friends': AppUser.objects.get(id = request.user.id).friends
+        'friends': AppUser.objects.get(id = request.user.id).friends,
+        'requested_friends': p.requested_friends,
+        'AUser': AUser,
     }
-    return render(request, 'meetup_finder_app/singleProfileView.html', context)
+
+    template_name = ''
+    if p in friends.all():
+        template_name = 'meetup_finder_app/singleFriendView.html'
+    else:
+        template_name = 'meetup_finder_app/singleProfileView.html'
+
+
+    return render(request, template_name, context)
 
 
 
@@ -151,12 +164,37 @@ def removeFriend(request):
     friend_profile.save()
     return HttpResponseRedirect(reverse('meetup_finder_app:singleProfile',kwargs={'user_id':friend_profile.id}))
 
+def requestFriend(request):
+    user_profile = AppUser.objects.get(id=request.POST['User'])
+    friend_profile = AppUser.objects.get(id=request.POST['Friend'])
+    friend_profile.requested_friends.add(user_profile)
+    friend_profile.save()
+    user_profile.save()
+    return HttpResponseRedirect(reverse('meetup_finder_app:singleProfile',kwargs={'user_id':friend_profile.id}))
+
 def addFriend(request):
     user_profile = AppUser.objects.get(id=request.POST['User'])
     friend_profile = AppUser.objects.get(id=request.POST['Friend'])
     user_profile.friends.add(friend_profile)
+    user_profile.requested_friends.remove(friend_profile)
     user_profile.save()
     friend_profile.save()
+    return HttpResponseRedirect(reverse('meetup_finder_app:FriendsView'))
+
+def rejectFriend(request):
+    user_profile = AppUser.objects.get(id=request.POST['User'])
+    friend_profile = AppUser.objects.get(id=request.POST['Friend'])
+    user_profile.requested_friends.remove(friend_profile)
+    user_profile.save()
+    friend_profile.save()
+    return HttpResponseRedirect(reverse('meetup_finder_app:FriendsView'))
+
+def rescindRequest(request):
+    user_profile = AppUser.objects.get(id=request.POST['User'])
+    friend_profile = AppUser.objects.get(id=request.POST['Friend'])
+    friend_profile.requested_friends.remove(user_profile)
+    friend_profile.save()
+    user_profile.save()
     return HttpResponseRedirect(reverse('meetup_finder_app:singleProfile',kwargs={'user_id':friend_profile.id}))
 
 

@@ -5,22 +5,22 @@
 <h1>{{profile.django_user.first_name}} {{profile.django_user.last_name}}</h1><br>
 
 
-{% if profile in friends.all %}
+{% if AUser in requested_friends.all %}
 
-    <h5>You're Friends with this person <br></h5><br>
-    <form action="{% url 'meetup_finder_app:removeFriend' %}" method="post">
+    <h5>You've Requested to be friends with this person <br></h5><br>
+    <form action="{% url 'meetup_finder_app:rescindRequest' %}" method="post">
         {% csrf_token %}
         <input type="hidden" id="uid" name="User" value="{{user.id}}">
         <input type="hidden" id="fid" name="Friend" value="{{profile.id}}">
-        <input type="submit" class="btn btn-primary" value="Remove Friend">
+        <input type="submit" class="btn btn-primary" value="Rescind Request">
     </form>
 {% else %}
     <h5>You're not friends with this person yet</h5><br>
-    <form action="{% url 'meetup_finder_app:addFriend' %}" method="post">
+    <form action="{% url 'meetup_finder_app:requestFriend' %}" method="post">
         {% csrf_token %}
         <input type="hidden" id="fid" name="Friend" value="{{profile.id}}">
         <input type="hidden" id="uid" name="User" value="{{user.id}}">
-        <input type="submit" class="btn btn-primary" value="Add Friend">
+        <input type="submit" class="btn btn-primary" value="Request Friend">
     </form>
 {% endif %}
 

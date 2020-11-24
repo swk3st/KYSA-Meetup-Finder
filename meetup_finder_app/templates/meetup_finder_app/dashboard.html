@@ -48,9 +48,13 @@
                 font-size: 3.5rem;
             }
         }
+        .hover2:hover{
+            background-color: #e44c65;
+        }
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -60,7 +64,7 @@
 
         <section class="jumbotron text-center" style ="background-image: url('../../static/images/UVA map.jpg');">
 
-        <div  style=" background: rgb(240, 240, 240); padding-top: 20px; height: 75%; margin: auto; width: 75%; padding: 10px;">
+        <div  style=" background: rgb(255, 255, 255); padding-top: 20px; height: 75%; margin: auto; width: 50%; padding: 10px;">
             <div class="container">
                 <h1 style="text-transform: capitalize;"><span> Welcome {% user_display user %} to KYSA </span></h1>
                 <p class="lead text-muted">Click on <a href="{% url 'meetup_finder_app:upcoming' %}"
@@ -68,8 +72,8 @@
                     view all events!</p>
                 <p>
 
-                    <a href="{% url 'meetup_finder_app:newevent' %}"  class="btn btn-secondary my-2">Create an Event</a>
-                    <a href="{% url 'meetup_finder_app:FriendsView' %}" class="btn btn-secondary my-2">Your Friends</a>
+                    <a href="{% url 'meetup_finder_app:newevent' %}"  style="background-color: #e44c65;" class="btn btn-secondary my-2">Create an Event</a>
+                    <a href="{% url 'meetup_finder_app:FriendsView' %}" style="background-color: #e44c65;" class="btn btn-secondary my-2">Your Friends</a>
                 </p>
             </div>
     </section>
@@ -96,7 +100,7 @@
                                     <p>{{ event.event_date }}</p>
                                     <br>
                                     <form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
-                                        <input class="btn btn-sm btn-outline-secondary" type="submit" value="Details" />
+                                        <input class="btn btn-sm btn-outline-secondary hover2"  type="submit" value="Details" />
                                     </form>
                                 </div>
                             </div>

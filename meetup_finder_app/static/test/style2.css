@@ -1,7 +1,18 @@
-footer{
-    /* flex-shrink: 0; */
-    /* position: auto; */
-  left: 0;
-  bottom: 0;
-  width: 100%;
+.go-top {
+    background-color: #ffffff;
+    box-shadow: 1px 1.732px 12px 0px #304352;
+    bottom: 2em;
+    right: 2em;
+    color: #222;
+    font-size: 26px;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 100%;
+  }
+  
+  .go-top:hover {
+    background: #e44c65;
+    color: #ffffff;
   }

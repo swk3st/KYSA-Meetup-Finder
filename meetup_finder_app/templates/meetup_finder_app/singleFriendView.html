@@ -57,6 +57,16 @@
 
 <div class="row" >
 	<div class="col-md-3">
+        <P style="margin-left: 10px">You're Friends with this Person</P><br>
+        
+        <div class="col-md-3 col-sm-3">
+            <form action="{% url 'meetup_finder_app:removeFriend' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="uid" name="User" value="{{AUser.id}}">
+                <input type="hidden" id="fid" name="Friend" value="{{profile.id}}">
+                <input type="submit" class="btn btn-sm btn-outline-secondary" value="Remove Friend">
+            </form>
+         </div>
 		</div>
     </div>
     <div class="col-md-3">

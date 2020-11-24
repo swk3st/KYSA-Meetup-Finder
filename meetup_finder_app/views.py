@@ -143,6 +143,7 @@ def singleProfileView(request, user_id):
         'friends': AppUser.objects.get(id = request.user.id).friends,
         'requested_friends': p.requested_friends,
         'AUser': AUser,
+        'user_id': user_id,
     }
 
     template_name = ''

@@ -11,6 +11,9 @@ class AppUser(models.Model):
     id = models.IntegerField(primary_key=True)
     django_user = models.OneToOneField(User,on_delete=models.CASCADE)
     friends = models.ManyToManyField("self")
+    # Wehn someone adds someone else they are put into requested friends, and if they are accepted
+    # they are put into the friends field
+    requested_friends = models.ManyToManyField("self", symmetrical = False)
     def __str__(self):
         return str(self.id)
 

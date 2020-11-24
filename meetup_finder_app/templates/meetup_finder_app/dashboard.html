@@ -58,9 +58,11 @@
 
     <main role="main">
 
-        <section class="jumbotron text-center">
+        <section class="jumbotron text-center" style ="background-image: url('../../static/images/UVA map.jpg');">
+
+        <div  style=" background: rgb(240, 240, 240); padding-top: 20px; height: 75%; margin: auto; width: 75%; padding: 10px;">
             <div class="container">
-                <h1><span>Welcome {% user_display user %} to KYSA </span></h1>
+                <h1 style="text-transform: capitalize;"><span> Welcome {% user_display user %} to KYSA </span></h1>
                 <p class="lead text-muted">Click on <a href="{% url 'meetup_finder_app:upcoming' %}"
                         class="smoothScroll" style="color: #e44c65;"><span>Explore</span></a> in the Navigation Bar to
                     view all events!</p>
@@ -70,7 +72,7 @@
                     <a href="{% url 'meetup_finder_app:FriendsView' %}" class="btn btn-secondary my-2">Your Friends</a>
                 </p>
             </div>
-        </section>
+    </section>
 
 
         <div class="album py-5 bg-light">
@@ -87,7 +89,7 @@
                                 <div id="bodyContent">
                                     <hr>
                                     <h5>By:</h5>
-                                    <p>{{ event.event_organizer }}</p>
+                                    <p style= "text-transform: capitalize;"> {{ event.event_organizer }}</p>
                                     <h6>Description:</h6>
                                     <p>{{ event.event_description }}</p>
                                     <h6>When:</h6>

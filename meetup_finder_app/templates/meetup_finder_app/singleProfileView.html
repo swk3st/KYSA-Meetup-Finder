@@ -2,21 +2,29 @@
 
 {% block content %}
 
-<h1>{{profile.django_user.first_name}} {{profile.django_user.last_name}}</h1><br>
+
+<section class="jumbotron text-center">
+    <div class="container" style= "text-transform: capitalize;">
+        <h1><span> You are not friends with {{profile.django_user.first_name}} {{profile.django_user.last_name}} </span></h1>
+    </div>
+</section>
+
+
+<h2 style=" left: 0; margin-left: 100px;" > To view {{profile.django_user.first_name}}'s Profile, you must request to be their friend.</h2><br>
 
 
 {% if AUser in requested_friends.all %}
 
-    <h5>You've Requested to be friends with this person <br></h5><br>
-    <form action="{% url 'meetup_finder_app:rescindRequest' %}" method="post">
+    <h5 style=" left: 0; margin-left: 100px;">You've Requested to be friends with this person <br></h5><br>
+    <form style=" left: 0; margin-left: 100px;" action="{% url 'meetup_finder_app:rescindRequest' %}" method="post">
         {% csrf_token %}
         <input type="hidden" id="uid" name="User" value="{{user.id}}">
         <input type="hidden" id="fid" name="Friend" value="{{profile.id}}">
         <input type="submit" class="btn btn-primary" value="Rescind Request">
     </form>
 {% else %}
-    <h5>You're not friends with this person yet</h5><br>
-    <form action="{% url 'meetup_finder_app:requestFriend' %}" method="post">
+    <h5 style=" left: 0; margin-left: 100px;" >You're not friends with this person yet</h5><br>
+    <form style=" left: 0; margin-left: 100px;" action="{% url 'meetup_finder_app:requestFriend' %}" method="post">
         {% csrf_token %}
         <input type="hidden" id="fid" name="Friend" value="{{profile.id}}">
         <input type="hidden" id="uid" name="User" value="{{user.id}}">

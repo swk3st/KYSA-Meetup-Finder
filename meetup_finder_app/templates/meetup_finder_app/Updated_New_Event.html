@@ -13,10 +13,9 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="row" style="  position: absolute; width: 70%;
-        left: 35%; padding: 20px; text-align: center;" >
+        <div class="row" style="width: 100%; padding: 20px; text-align: center;" >
             
-            <div class="col-md-5 d-inline-flex p-2 justify-content-center" >
+            <div class="col-md-4" style="margin:auto" >
                 
               <div class="card card-body">
                 <h3>Create An Event</h3>
@@ -24,13 +23,6 @@
             {% csrf_token %}
             <label>Event name:</label><br>
             <input type="text" id="event_name_text" name="event_name_text" required><br>
-
-            <label>Organizer name:</label><br>
-            <input type="text" id="organizer" name = "organizer" required><br>
-
-            <label>Details:</label><br>
-            <input type="text" id='detail_text' name="detail_text" required><br>
-
             <label>Location Name:</label><br>
             <input type="text" id="location" name="location"><br>
 
@@ -46,11 +38,15 @@
             <!-- GeoLocation Data -->
             <input type="hidden" id="lattitude" name="lat">
             <input type="hidden" id="longitude" name="lng">
+
+            <label>Details:</label><br>
+            <input type="text" id='detail_text' name="detail_text" required><br>
+
             <label>Date:</label><br>
             <input type="datetime-local" id="event_time"
             name="event_time" required><br>
-            <br>
-            <input type="submit" class="btn btn-primary" value="Create Event">
+<br>
+            <input style = "padding-bottom: 3px;" type="submit" class="btn btn-sm btn-outline-secondary" value="Create Event">
         </form>
     </div>
 </div>

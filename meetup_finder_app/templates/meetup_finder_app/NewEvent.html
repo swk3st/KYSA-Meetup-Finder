@@ -15,18 +15,15 @@
         {% csrf_token %}
         <label>Event Name:</label><br>
         <input type="text" id="event_name_text" name="event_name_text"><br>
-        <!-- Will need to get rid of this eventually since it should know the user's information-->
-        <label> Organizer Name:</label><br>
-        <input type="text" id="organizer" name = "organizer"><br>
+        <label>Location (address):</label>
+        <input type="text" id="address" name="address"><br>
+        <input type="submit" class="btn btn-primary" value="Publish Event">
+        </form>
         <label>Description:</label><br>
         <input type="text" id='detail_text' name="detail_text"><br>
         <label>Date:</label>
         <input type="datetime-local" id="event_time"
           name="event_time"><br>
-        <label>Location (address):</label>
-        <input type="text" id="address" name="address"><br>
-        <input type="submit" class="btn btn-primary" value="Publish Event">
-        </form>
       </div>
     </div>
    </body>
@@ -34,13 +31,3 @@
    {% endblock %}
 
    
-   <footer class="text-muted" style= "bottom: 0">
-    <div class="container">
-        <p class="float-right">
-            <a href="#"> Back to top</a>
-          </p>
-        <br>
-      <p> CS 3240 Advanced Software Development. By Arthur Given (ajg3qc), Katharina Kemper (kk6ev), Solimar Kwa (swk3st), & Yudel Martinez (yam3nv).</p>
-    </div>
-  </footer>
-<hr>

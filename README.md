@@ -14,7 +14,11 @@ The first thing to do is to clone the repository:
 $ git clone https://github.com/uva-cs3240-f20/project-1-23.git
 $ cd project-1-23
 ```
-If you want to run it locally" 
+Then install the dependecies
+```sh
+$ pip install -r requirements.txt
+```
+If you want to run it locally
 ```sh
 $ python3 manage.py runserver
 ```

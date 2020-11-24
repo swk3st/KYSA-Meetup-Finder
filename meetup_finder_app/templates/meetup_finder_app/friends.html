@@ -113,11 +113,17 @@
                                 {{u.django_user.first_name}} {{u.django_user.last_name}} </a> </li>
 
 
-                    </div>
-                         
-                    <div class="col-md-3 col-sm-3">
 
+                      <!--                       
+                    <div class="col-md-3 col-sm-3">
+                        <form action="{% url 'meetup_finder_app:removeFriend' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" id="uid" name="User" value="{{user.id}}">
+                            <input type="hidden" id="fid" name="Friend" value="{{friend.id}}">
+                            <input type="submit" class="btn btn-sm btn-outline-secondary" value="Remove Friend">
+                        </form>
                       </div>
+-->
 
                 </div>
 

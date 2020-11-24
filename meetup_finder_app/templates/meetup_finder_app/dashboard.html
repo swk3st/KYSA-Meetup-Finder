@@ -27,9 +27,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>Album example · Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
 
@@ -65,11 +62,11 @@
             <div class="container">
                 <h1><span>Welcome {% user_display user %} to KYSA </span></h1>
                 <p class="lead text-muted">Click on <a href="{% url 'meetup_finder_app:upcoming' %}"
-                        class=" smoothScroll" style="color: #e44c65;"><span>Explore</span></a> in the Navigation Bar to
+                        class="smoothScroll" style="color: #e44c65;"><span>Explore</span></a> in the Navigation Bar to
                     view all events!</p>
                 <p>
 
-                    <a href="{% url 'meetup_finder_app:newevent' %}" class="btn btn-secondary my-2">Create an Event</a>
+                    <a href="{% url 'meetup_finder_app:newevent' %}"  class="btn btn-secondary my-2">Create an Event</a>
                     <a href="{% url 'meetup_finder_app:FriendsView' %}" class="btn btn-secondary my-2">Your Friends</a>
                 </p>
             </div>

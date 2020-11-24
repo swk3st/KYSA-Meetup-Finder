@@ -1,6 +1,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZJQ6RGoFJHdFW8gQc96N99L0tOHHJXk4&callback=initMap&libraries=&v=weekly" defer></script>
 <div id="map" style="width:100%;height: 100%;"></div>
 
+
         <script>
             // Initialize and add the map
             function initMap() {        
@@ -21,7 +22,7 @@
                             <p>{{ event.event_date }}</p>
                             <br>
                             <form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
-                                <input class="btn btn-primary" type="submit" value="Details" />
+                                <input class="btn btn-sm btn-outline-secondary" type="submit" value="Details" />
                             </form>
                         </div>
                     </div>`
@@ -62,4 +63,6 @@
                 map.setOptions({scrollwheel: false});
                 
             }
+        
         </script>
+

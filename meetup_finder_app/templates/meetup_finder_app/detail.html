@@ -1,0 +1,65 @@
+{% include 'meetup_finder_app/navbar.html' %}
+
+{% include 'meetup_finder_app/single_event_view.html' %}
+
+<div style = "padding-left:8px">
+
+<h1 style="text-align: center;">{{ event.event_name }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <h4  style=" left: 0; margin-left: 100px;">Organizer:</h4>
+    <p style=" left: 0; margin-left: 100px; text-transform: capitalize;"> {{event.event_organizer}} </p> 
+    <h4  style=" left: 0; margin-left: 100px;">Description:</h4>
+    <p style=" left: 0; margin-left: 100px;">{{event.event_description}}</p> 
+    <h4  style=" left: 0; margin-left: 100px;">Date & Time:</h4>
+    <p style=" left: 0; margin-left: 100px; ">{{event.event_date}}</p> 
+
+
+    {% if user.is_authenticated %}
+
+
+
+        {% if user in event.all_users%}
+
+            <h5 style=" left: 0; margin-left: 100px;">You're going to this event! <br> See you on {{event.event_date}}! </h5><br>
+            <form action="{% url 'meetup_finder_app:revoke_interest' %}" method="post">
+            {% csrf_token %}
+                <input type="hidden" id="eid" name="Event" value="{{event.id}}">
+                <input type="hidden" id="uid" name="User" value="{{user.id}}">
+                <input type="submit" class="btn btn-primary" value="No Longer Interested" style=" left: 0; margin-left: 100px;">
+            </form>
+        {% else %}
+            <h5 style=" left: 0; margin-left: 100px;">Are you interested? <br> Let others know you're going!</h5><br>
+            <form action="{% url 'meetup_finder_app:show_interest' %}" method="post">
+            {% csrf_token %}
+                <input type="hidden" id="eid" name="Event" value="{{event.id}}">
+                <input type="hidden" id="uid" name="User" value="{{user.id}}">
+                <input type="submit" class="btn btn-primary" value="Interested" style=" left: 0; margin-left: 100px;">
+            </form>
+        {% endif %}
+
+        {% if event.event_organizer == user %}
+        <form action="{% url 'meetup_finder_app:delete_event' %}" method="post">
+        {% csrf_token %}
+            <input type="hidden" id="eid" name="Event" value="{{event.id}}">
+            <input type="hidden" id="uid" name="User" value="{{user.id}}">
+            <input type="submit" class="btn btn-danger" value="Delete Event" style="position: absolute; right: 0; margin-right: 100px;">
+        </form>
+
+        <hr>
+        <h5 style=" left: 0; margin-left: 100px;">Interested Users:</h5>
+        <ul style="text-transform: capitalize;">
+        {%for u in event.all_users%}
+            {%if not user.id == u.id %}
+            <li style=" left: 0; margin-left: 100px;"><a href = "{% url 'meetup_finder_app:singleProfile' u.id %}">{{u}}</a></li>
+            {%endif%}
+        {% endfor %}
+        </ul>
+
+
+
+    {% endif %}
+
+    {% endif %}     
+
+</div> 

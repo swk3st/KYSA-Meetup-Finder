@@ -1,0 +1,43 @@
+{% load account %}
+
+<!-- {% user_display user %} -->
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}KYSA Meetup Finder{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    {% block stylesheet %}{% endblock %}  
+  </head>
+  <body>
+    {% block body %}  
+    <section id="navbar">
+      <nav class="navbar navbar-light bg-light justify-content-between">
+          <a class="navbar-brand">
+                <a href="{% url 'meetup_finder_app:dashboard'%}" class="navbar-brand smoothScroll"><b>KYSA</b></a>
+          </a>
+              <ul class="nav navbar-header ml-auto" style="font-size: 20px;">
+                <!-- <form class="form-inline">
+                  <input class="form-control mr-sm-2 px-3" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>  -->
+                <li class="nav-item ml-auto">
+                  <a class="nav-link smoothScroll" href="{% url 'meetup_finder_app:dashboard'%}" style="color: #e44c65;">Dashboard</a>
+                </li>
+                <li class="nav-item ml-auto">
+                  <a href="{% url 'meetup_finder_app:upcoming' %}" class="nav-link smoothScroll" style="color: #e44c65;"><span>Explore</span></a>
+                  </li>
+                <li class="nav-item ml-auto">
+                  <a class="nav-link smoothScroll" href="{% url 'meetup_finder_app:uProfile'%}" style="color: #e44c65;">My Profile</a>
+                </li>
+                
+                <li class="nav-item ml-auto">
+                  <a href="{% url 'meetup_finder_app:account_logout' %}" class="nav-link smoothScroll" style="color: #e44c65;"><span> Logout</span></a>
+                </li>
+              </ul> 
+      </nav>
+    </section>
+
+    {% endblock body %}  
+  </body>

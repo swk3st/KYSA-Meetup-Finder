@@ -35,6 +35,9 @@
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
+		}
+		.hover2:hover{
+            background-color: #e44c65;
         }
     </style>
     <!-- Custom styles for this template -->
@@ -55,11 +58,11 @@
 
 	<div class="container border-bottom bg-white mt-1 pt-md-3 pt-2">
 		<div class="d-flex flex-md-row justify-content-around align-items-center">
-			<img class="rounded-circle" style="border: 2px solid rgb(211, 201, 201); width: 200px;
-			height: 200px;" src="{{ profile_picture }}">
+			<img class="rounded-circle" style="border: 2px solid rgb(211, 201, 201); width: 100px;
+			height: 100px;" src="{{ profile_picture }}">
 			<div class="d-flex flex-md-row align-items-center">
 				<div class="p-md-2 p-1" id="info">
-					<h4> </h4>
+					<h4> Username: {% user_display user %}</h4>
 					<!-- <h5><a href="" class="smoothScroll">Your Friends</a></h5> -->
 				 </div>
 			</div>
@@ -72,24 +75,25 @@
     <div class="col-md-3">
 		<div class="card card-body">
 			<a class="btn btn-primary " href="{% url 'meetup_finder_app:FriendsView' %}">Your Friends</a>
-		<div class="pl-lg-5 pt-lg-2 pt-md-1"> 
-			<br>
+		<!-- <div class="pl-lg-5 pt-lg-2 pt-md-1">  -->
+			<!-- <br>
 			<a href="{% url 'meetup_finder_app:account_email_verification_sent' %}" class="smoothScroll"><span><u>Verify your Email</u></span></a>
-			<br>
-			<br>
+			<br>  -->
+			<!-- <br>
 			<a href="{% url 'meetup_finder_app:account_email' %}" class="smoothScroll"><span><u> Edit Email</u></span></a>
-			<br>
+			<br> -->
 			<!-- <a href="{% url 'meetup_finder_app:account_change_password' %}" class="smoothScroll"><span><u> Edit Password</u></span></a> -->
 			<br>
-			<a href="{% url 'meetup_finder_app:account_logout' %}" class="smoothScroll"><span><u> Logout</u></span></a>
-			<br>
-			<br>
-		</div>
+			<a href="{% url 'meetup_finder_app:account_logout' %}" class=" btn btn-primary btn-sm btn-block smoothScroll"><span> Logout </span></a>
+			<!-- <br> -->
+		<!-- </div> -->
 	</div>
 	</div>
 </div>
 <br>
 
+
+</div> 
 <div class="album py-5 bg-light">
 	<div class="container">
 		<h2>Your Upcoming Events:</h2>
@@ -103,15 +107,15 @@
 						<h1 id="firstHeading" class="firstHeading">{{ event.event_name }}</h1>
 						<div id="bodyContent">
 							<hr>
-							<h5 > By:</h5>
-							<p style= "text-transform: capitalize;">{{ event.event_organizer }}</p>
+							<h5>By:</h5>
+							<p>{{ event.event_organizer }}</p>
 							<h6>Description:</h6>
 							<p>{{ event.event_description }}</p>
 							<h6>When:</h6>
 							<p>{{ event.event_date }}</p>
 							<br>
 							<form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
-								<input class="btn btn-sm btn-outline-secondary" type="submit" value="Details" />
+								<input class="btn btn-sm btn-outline-secondary hover2" type="submit" value="Details" />
 							</form>
 						</div>
 					</div>
@@ -121,7 +125,6 @@
 			{%endfor%}
 		</div>
 	</div>
-</div>
 </div>
 
 

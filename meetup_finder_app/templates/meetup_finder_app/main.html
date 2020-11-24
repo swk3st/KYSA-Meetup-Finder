@@ -1,26 +1,51 @@
+{% load static%}
 <!DOCTYPE html>
 <html>
 <head>
     <title> Meetup Finder App </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="{% static 'test/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'test/animate.min.css' %}">
+  </head>
+  <style>
+    .go-top {
+    background-color: #ffffff;
+    box-shadow: 1px 1.732px 12px 0px #304352;
+    bottom: 2em;
+    right: 2em;
+    color: #222;
+    font-size: 26px;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 100%;
+  }
+  
+  .go-top:hover {
+    background: #d44860;
+    color: #ffffff;
+  }
+  </style>
 <body>
     {% include 'meetup_finder_app/navbar.html' %}
 
     {% block content %}
 
     {% endblock %}
+  
+    <footer class="text-muted footer" style="position:fixed;bottom: 0; width: 100%;">
+        <div class="container">
+            <p class="float-right">
+              <a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+                <!-- <a href="#"> Back to top</a> -->
+              </p>
+            <br>
+          <p> CS 3240 Advanced Software Development. By Arthur Given (ajg3qc), Katharina Kemper (kk6ev), Solimar Kwa (swk3s), & Yudel Martinez (yam3nv).</p>
+        </div>
+      </footer>
+    <!-- <hr> -->
 
-    <footer class="text-muted" style= "bottom: 0">
-      <div class="container">
-          <p class="float-right">
-              <a href="#"> Back to top</a>
-            </p>
-          <br>
-        <p> CS 3240 Advanced Software Development. By Arthur Given (ajg3qc), Katharina Kemper (kk6ev), Solimar Kwa (swk3st), & Yudel Martinez (yam3nv).</p>
-      </div>
-    </footer>
-  <hr>
 </body>
 </html>
 

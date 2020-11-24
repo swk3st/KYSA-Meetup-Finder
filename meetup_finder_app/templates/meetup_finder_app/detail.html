@@ -48,7 +48,7 @@
 
         <hr>
         <h5 style=" left: 0; margin-left: 100px;">Interested Users:</h5>
-        <ul>
+        <ul style="text-transform: capitalize;">
         {%for u in event.all_users%}
             {%if not user.id == u.id %}
             <li style=" left: 0; margin-left: 100px;"><a href = "{% url 'meetup_finder_app:singleProfile' u.id %}">{{u}}</a></li>

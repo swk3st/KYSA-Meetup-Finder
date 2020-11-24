@@ -67,26 +67,54 @@
             </div>
         </section>
 
+
+        {% if requested_list %}
+
+        <h3 style=" left: 0; margin-left: 200px;">   Pending Friend Requests</h3>
+
+        {% for r in requested_list %}
+
+        <div style=" left: 0; margin-left: 200px;">
+            <h5><a href="{% url 'meetup_finder_app:singleProfile' r.id %}" class="profile-link">
+                {{r.django_user.first_name}} {{r.django_user.last_name}} </a> </h5>
+        <form action="{% url 'meetup_finder_app:addFriend' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="fid" name="Friend" value="{{r.id}}">
+                <input type="hidden" id="uid" name="User" value="{{user.id}}">
+                <input type="submit" class="btn btn-sm btn-outline-secondary"
+                value="Confirm Friend" >
+            </form>
+            <br>
+
+            <form action="{% url 'meetup_finder_app:rejectFriend' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="fid" name="Friend" value="{{r.id}}">
+                <input type="hidden" id="uid" name="User" value="{{user.id}}">
+                <input type="submit" class="btn btn-sm btn-outline-secondary"
+                value="Reject Friend">
+            </form>
+
+        </div>
+
+        {% endfor %}
+        {% endif %}
+
+        <br>
+
         {% if friends_list %}
+        <h4 style=" left: 0; margin-left: 200px;"> All Friends </h4>
 
         {%for u in friends_list%}
         <div class="container">
             <div class="nearby-user">
                 <div class="row">
             
-                    <div class="col-md-7 col-sm-7">
-                        <h4> All Friends </h4>
-                        <h5><a href="{% url 'meetup_finder_app:singleProfile' u.id %}" class="profile-link">
-                                {{u.django_user.first_name}} {{u.django_user.last_name}} </a> </h5>
+                        <li><a href="{% url 'meetup_finder_app:singleProfile' u.id %}" class="profile-link">
+                                {{u.django_user.first_name}} {{u.django_user.last_name}} </a> </li>
 
-                             <form action="{% url 'meetup_finder_app:removeFriend' %}" method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" id="fid" name="Friend" value="{{r.id}}">
-                                    <input type="hidden" id="uid" name="User" value="{{user.id}}">
-                                    <input type="submit" class="btn btn-primary" value="Remove Friend">
-                                </form>
+
                     </div>
-                                          
+                         
                     <div class="col-md-3 col-sm-3">
 
                       </div>
@@ -101,33 +129,7 @@
 
             
 
-            {% if requested_list %}
 
-            <h3 style=" left: 0; margin-left: 100px;">   Pending Friend Requests</h3>
-
-            {% for r in requested_list %}
-
-            <div style=" left: 0; margin-left: 100px;">
-                <p>{{r.django_user.first_name}} {{r.django_user.last_name}}</p><br>
-                <form action="{% url 'meetup_finder_app:addFriend' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" id="fid" name="Friend" value="{{r.id}}">
-                    <input type="hidden" id="uid" name="User" value="{{user.id}}">
-                    <input type="submit" class="btn btn-primary" value="Confirm Friend" >
-                </form>
-                <br>
-
-                <form action="{% url 'meetup_finder_app:rejectFriend' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" id="fid" name="Friend" value="{{r.id}}">
-                    <input type="hidden" id="uid" name="User" value="{{user.id}}">
-                    <input type="submit" class="btn btn-primary" value="Reject Friend">
-                </form>
-  
-            </div>
-
-            {% endfor %}
-            {% endif %}
 
 
             {% endblock %}

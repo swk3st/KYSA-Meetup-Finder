@@ -7,8 +7,14 @@
 <h1 style="text-align: center;">{{ event.event_name }}</h1>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <h4  style=" left: 0; margin-left: 100px;">Organizer:</h4>
+    <p style=" left: 0; margin-left: 100px; text-transform: capitalize;"> {{event.event_organizer}} </p> 
     <h4  style=" left: 0; margin-left: 100px;">Description:</h4>
-    <p style=" left: 0; margin-left: 100px;">{{event.event_description}}</p>    
+    <p style=" left: 0; margin-left: 100px;">{{event.event_description}}</p> 
+    <h4  style=" left: 0; margin-left: 100px;">Date & Time:</h4>
+    <p style=" left: 0; margin-left: 100px; ">{{event.event_date}}</p> 
+
+
     {% if user.is_authenticated %}
 
 

@@ -65,7 +65,7 @@
         </section>
 
 
-<section class="search-box">
+<section class="album py-5 bg-light">
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-5 listing-block">
@@ -74,13 +74,14 @@
             <ul>
                {% for event in event_list %}
                <hr >
-               <div style="border: 2px solid black; text-align: center;">
-                <u><a href="{% url 'meetup_finder_app:detail' event.id %}" >
-                {{event.event_name}}</a></u> <br>
+               <div class="card mb-4 shadow-sm" style=" text-align: center;">
+                <h3 style = "padding-top: 1rem; "><a href="{% url 'meetup_finder_app:detail' event.id %}" >
+                {{event.event_name}}</a></h3> <br>
                 Description: {{event.event_description}}<br>
-                Time: {{event.event_date}}<br>
+                {{event.event_date}}<br>
+                <br>
                 <form action="{% url 'meetup_finder_app:detail' pk=event.id %}">
-                    <input class="btn btn-primary" type="submit" value="More Details" />
+                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="More Details" />
                 </form>
             </div>
                 {% endfor %}

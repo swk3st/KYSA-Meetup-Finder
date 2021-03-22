@@ -1,6 +1,6 @@
 # KYSA Meet-up Finder
 
-Project-1-23 creates the KYSA website which helps users login with their google account to find friends and local events occuring in their area. It look at the offical website click on https://meet-up-finder.herokuapp.com/
+The Keeping YourSelf Aware (KYSA) website which helps users login with their google account to find friends and local events occuring in their area. To look at the offical website click on https://meet-up-finder.herokuapp.com/
 
 ## Heroku 
 
